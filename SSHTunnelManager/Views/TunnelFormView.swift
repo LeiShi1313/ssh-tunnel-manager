@@ -125,6 +125,7 @@ struct TunnelFormView: View {
             manager.updateTunnel(config, password: pwd)
         } else {
             manager.addTunnel(config, password: pwd)
+            manager.connect(config.id)
         }
         onDismiss?()
     }
