@@ -1,0 +1,393 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5E56A07A702A6D3F321668F0 /* SSHTunnelManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1A4E0702A57F60E7FDB292 /* SSHTunnelManagerTests.swift */; };
+		E808F6E440DFD044796B4926 /* SSHTunnelManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFADF22E152EE5C7FDCB38EB /* SSHTunnelManagerApp.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		524FDB41B64A46B956C7F61A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DB49ACC03D5E7410207F8226 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1E4F5FB5085AB032F5EDD326;
+			remoteInfo = SSHTunnelManager;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		36D6C4C316A99536379CEF9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		4D111C803D54D3AA851AA1FC /* SSHTunnelManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SSHTunnelManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9CF370238BB93E42EE5ACEFA /* SSHTunnelManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SSHTunnelManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC1A4E0702A57F60E7FDB292 /* SSHTunnelManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSHTunnelManagerTests.swift; sourceTree = "<group>"; };
+		D64B75B801CD8FC2FBFDE8ED /* SSHTunnelManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SSHTunnelManager.entitlements; sourceTree = "<group>"; };
+		FFADF22E152EE5C7FDCB38EB /* SSHTunnelManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSHTunnelManagerApp.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		270CD0682CE9885F30D23924 = {
+			isa = PBXGroup;
+			children = (
+				7C3D533979F3F96D3170DAE0 /* SSHTunnelManager */,
+				9F88C46FF2659218C17D008A /* SSHTunnelManagerTests */,
+				BE85D46F453EBDD3B59E16F8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7C3D533979F3F96D3170DAE0 /* SSHTunnelManager */ = {
+			isa = PBXGroup;
+			children = (
+				C1E942F1486130FC96C79DFE /* App */,
+			);
+			path = SSHTunnelManager;
+			sourceTree = "<group>";
+		};
+		9F88C46FF2659218C17D008A /* SSHTunnelManagerTests */ = {
+			isa = PBXGroup;
+			children = (
+				BC1A4E0702A57F60E7FDB292 /* SSHTunnelManagerTests.swift */,
+			);
+			path = SSHTunnelManagerTests;
+			sourceTree = "<group>";
+		};
+		BE85D46F453EBDD3B59E16F8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9CF370238BB93E42EE5ACEFA /* SSHTunnelManager.app */,
+				4D111C803D54D3AA851AA1FC /* SSHTunnelManagerTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C1E942F1486130FC96C79DFE /* App */ = {
+			isa = PBXGroup;
+			children = (
+				36D6C4C316A99536379CEF9D /* Info.plist */,
+				D64B75B801CD8FC2FBFDE8ED /* SSHTunnelManager.entitlements */,
+				FFADF22E152EE5C7FDCB38EB /* SSHTunnelManagerApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1E4F5FB5085AB032F5EDD326 /* SSHTunnelManager */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3AC811B9C51C50C031DAB4B2 /* Build configuration list for PBXNativeTarget "SSHTunnelManager" */;
+			buildPhases = (
+				F3DF69130F6BB3DD2895B6BB /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SSHTunnelManager;
+			packageProductDependencies = (
+			);
+			productName = SSHTunnelManager;
+			productReference = 9CF370238BB93E42EE5ACEFA /* SSHTunnelManager.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6B199C5E9D52F19E4328B1CF /* SSHTunnelManagerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DD35C7BDF903DC4169D55BB4 /* Build configuration list for PBXNativeTarget "SSHTunnelManagerTests" */;
+			buildPhases = (
+				C382A18CEE221B021E9608EF /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6A7F23C281CDD709C96207E1 /* PBXTargetDependency */,
+			);
+			name = SSHTunnelManagerTests;
+			packageProductDependencies = (
+			);
+			productName = SSHTunnelManagerTests;
+			productReference = 4D111C803D54D3AA851AA1FC /* SSHTunnelManagerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DB49ACC03D5E7410207F8226 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+				};
+			};
+			buildConfigurationList = 0FC75E89662DCC7389013F34 /* Build configuration list for PBXProject "SSHTunnelManager" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 270CD0682CE9885F30D23924;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = BE85D46F453EBDD3B59E16F8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1E4F5FB5085AB032F5EDD326 /* SSHTunnelManager */,
+				6B199C5E9D52F19E4328B1CF /* SSHTunnelManagerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C382A18CEE221B021E9608EF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E56A07A702A6D3F321668F0 /* SSHTunnelManagerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3DF69130F6BB3DD2895B6BB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E808F6E440DFD044796B4926 /* SSHTunnelManagerApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6A7F23C281CDD709C96207E1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1E4F5FB5085AB032F5EDD326 /* SSHTunnelManager */;
+			targetProxy = 524FDB41B64A46B956C7F61A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		3C29453B1DEBCA7E25BD0092 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+		528F28D0E8BEEBA800DF4F20 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lei.ssh-tunnel-manager.tests";
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SSHTunnelManager.app/Contents/MacOS/SSHTunnelManager";
+			};
+			name = Release;
+		};
+		59D938B68357BA4664D7D7FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+		5F8237654A7C467970E2C69E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SSHTunnelManager/App/SSHTunnelManager.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = SSHTunnelManager/App/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lei.ssh-tunnel-manager";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		62736CC7FFE329BE217A0F06 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SSHTunnelManager/App/SSHTunnelManager.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = SSHTunnelManager/App/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lei.ssh-tunnel-manager";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		9A1C32B635069B719AD21B75 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lei.ssh-tunnel-manager.tests";
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SSHTunnelManager.app/Contents/MacOS/SSHTunnelManager";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0FC75E89662DCC7389013F34 /* Build configuration list for PBXProject "SSHTunnelManager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3C29453B1DEBCA7E25BD0092 /* Debug */,
+				59D938B68357BA4664D7D7FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		3AC811B9C51C50C031DAB4B2 /* Build configuration list for PBXNativeTarget "SSHTunnelManager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5F8237654A7C467970E2C69E /* Debug */,
+				62736CC7FFE329BE217A0F06 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		DD35C7BDF903DC4169D55BB4 /* Build configuration list for PBXNativeTarget "SSHTunnelManagerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9A1C32B635069B719AD21B75 /* Debug */,
+				528F28D0E8BEEBA800DF4F20 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DB49ACC03D5E7410207F8226 /* Project object */;
+}
