@@ -8,10 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		0000F1C2C22BD4DD7C242062 /* SSHCommandBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2CF78C217C6E72E4C70FDC /* SSHCommandBuilderTests.swift */; };
+		03F7631496214833C39B6573 /* MenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AD7EB2C57EEB5FDAABF8FA /* MenuBarView.swift */; };
+		04CCD656AF3FFBBB48A49FD4 /* TunnelRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097B7E8B9D18A9FC0E4CDF74 /* TunnelRowView.swift */; };
 		05B5DA2AD2D7216AA3D1E9F9 /* TunnelConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5909F6104FB2F4B5A601375B /* TunnelConfig.swift */; };
 		132C8BAC93109320027E82EB /* TunnelProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFE4A20F8124A7ECE605B66 /* TunnelProcess.swift */; };
 		16E40854C8A5BFC5B80004B4 /* TunnelConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BDAAB18C1E0D7D989269C0 /* TunnelConfigTests.swift */; };
 		21EE1592F11E0FB973706733 /* SSHCommandBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41179959135F03EF2DCCD56 /* SSHCommandBuilder.swift */; };
+		2A0841AE4104778EAB4CC6FE /* StatusBarIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23A0DF73B1FF5C0C604EFC5 /* StatusBarIcon.swift */; };
 		39361CD241B3BB35FC5AC0EC /* AskpassHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036B4773BB3F7E66A015686E /* AskpassHelper.swift */; };
 		48D01238BF0B7BC09F87E859 /* PortChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF125BD0DA36ECE11FEB59D1 /* PortChecker.swift */; };
 		5E56A07A702A6D3F321668F0 /* SSHTunnelManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1A4E0702A57F60E7FDB292 /* SSHTunnelManagerTests.swift */; };
@@ -21,10 +24,12 @@
 		78AA23EAB40D605328E5D6AB /* TunnelStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E53BDE4DB853BCB476F57E /* TunnelStore.swift */; };
 		7B13417F205DB772A3A7E785 /* TunnelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5050828A54BFB208B0F2F45E /* TunnelManager.swift */; };
 		9922B09E1F7E39F1EAE408E3 /* PortCheckerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8CD1AFE108B03994C56CFD1 /* PortCheckerTests.swift */; };
+		9E254BE654C3B3F69D83062F /* TunnelFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2399048E7153D0CA424F2371 /* TunnelFormView.swift */; };
 		B525650851107C50B13E1C4F /* ReconnectSchedulerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862BBC573FE03893D84A68DA /* ReconnectSchedulerTests.swift */; };
 		C5D062341D82EA833A1CD40E /* TunnelStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B0B944BFD3C4AD3866E93B /* TunnelStoreTests.swift */; };
 		D48907E9863B91C7709B4CF0 /* ReconnectScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D56464A78D1542DCECBA1E0 /* ReconnectScheduler.swift */; };
 		E808F6E440DFD044796B4926 /* SSHTunnelManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFADF22E152EE5C7FDCB38EB /* SSHTunnelManagerApp.swift */; };
+		F2F2349EEE2948F814A4E039 /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023F4841D6F4E17488711643 /* PreferencesView.swift */; };
 		F9F8154E88D77B7BFCE03EB5 /* TunnelState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F2A76586A414A18117D984 /* TunnelState.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,8 +44,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		023F4841D6F4E17488711643 /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
 		036B4773BB3F7E66A015686E /* AskpassHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskpassHelper.swift; sourceTree = "<group>"; };
+		097B7E8B9D18A9FC0E4CDF74 /* TunnelRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelRowView.swift; sourceTree = "<group>"; };
+		2399048E7153D0CA424F2371 /* TunnelFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelFormView.swift; sourceTree = "<group>"; };
 		2C5B10661CC37FC88DBEDEB7 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		32AD7EB2C57EEB5FDAABF8FA /* MenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarView.swift; sourceTree = "<group>"; };
 		36D6C4C316A99536379CEF9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		40EFD25F9F49585B59AD7D68 /* KeychainServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainServiceTests.swift; sourceTree = "<group>"; };
 		4D111C803D54D3AA851AA1FC /* SSHTunnelManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SSHTunnelManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,6 +69,7 @@
 		CBFE4A20F8124A7ECE605B66 /* TunnelProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelProcess.swift; sourceTree = "<group>"; };
 		D64B75B801CD8FC2FBFDE8ED /* SSHTunnelManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SSHTunnelManager.entitlements; sourceTree = "<group>"; };
 		EF125BD0DA36ECE11FEB59D1 /* PortChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortChecker.swift; sourceTree = "<group>"; };
+		F23A0DF73B1FF5C0C604EFC5 /* StatusBarIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarIcon.swift; sourceTree = "<group>"; };
 		F8CD1AFE108B03994C56CFD1 /* PortCheckerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortCheckerTests.swift; sourceTree = "<group>"; };
 		FFADF22E152EE5C7FDCB38EB /* SSHTunnelManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSHTunnelManagerApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -96,8 +106,21 @@
 				C1E942F1486130FC96C79DFE /* App */,
 				F46F4A1A56C894EDC479C2C9 /* Models */,
 				5A994D0C4EE5984C0FCC0CF1 /* Services */,
+				93B34A6D8AC31E0FE48F3201 /* Views */,
 			);
 			path = SSHTunnelManager;
+			sourceTree = "<group>";
+		};
+		93B34A6D8AC31E0FE48F3201 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				32AD7EB2C57EEB5FDAABF8FA /* MenuBarView.swift */,
+				023F4841D6F4E17488711643 /* PreferencesView.swift */,
+				F23A0DF73B1FF5C0C604EFC5 /* StatusBarIcon.swift */,
+				2399048E7153D0CA424F2371 /* TunnelFormView.swift */,
+				097B7E8B9D18A9FC0E4CDF74 /* TunnelRowView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		9F88C46FF2659218C17D008A /* SSHTunnelManagerTests */ = {
@@ -232,14 +255,19 @@
 			files = (
 				39361CD241B3BB35FC5AC0EC /* AskpassHelper.swift in Sources */,
 				63B1C8A878C0CEE3A517A3D7 /* KeychainService.swift in Sources */,
+				03F7631496214833C39B6573 /* MenuBarView.swift in Sources */,
 				5F64D06E9EF13B62C1A83FDB /* NotificationService.swift in Sources */,
 				48D01238BF0B7BC09F87E859 /* PortChecker.swift in Sources */,
+				F2F2349EEE2948F814A4E039 /* PreferencesView.swift in Sources */,
 				D48907E9863B91C7709B4CF0 /* ReconnectScheduler.swift in Sources */,
 				21EE1592F11E0FB973706733 /* SSHCommandBuilder.swift in Sources */,
 				E808F6E440DFD044796B4926 /* SSHTunnelManagerApp.swift in Sources */,
+				2A0841AE4104778EAB4CC6FE /* StatusBarIcon.swift in Sources */,
 				05B5DA2AD2D7216AA3D1E9F9 /* TunnelConfig.swift in Sources */,
+				9E254BE654C3B3F69D83062F /* TunnelFormView.swift in Sources */,
 				7B13417F205DB772A3A7E785 /* TunnelManager.swift in Sources */,
 				132C8BAC93109320027E82EB /* TunnelProcess.swift in Sources */,
+				04CCD656AF3FFBBB48A49FD4 /* TunnelRowView.swift in Sources */,
 				F9F8154E88D77B7BFCE03EB5 /* TunnelState.swift in Sources */,
 				78AA23EAB40D605328E5D6AB /* TunnelStore.swift in Sources */,
 			);
