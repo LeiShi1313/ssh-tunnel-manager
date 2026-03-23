@@ -12,11 +12,15 @@ targets:
     platform: macOS
     sources:
       - SSHTunnelManager
+    info:
+      path: SSHTunnelManager/App/Info.plist
+      properties:
+        LSUIElement: true
     settings:
-      INFOPLIST_FILE: SSHTunnelManager/App/Info.plist
       PRODUCT_BUNDLE_IDENTIFIER: com.lei.ssh-tunnel-manager
       MACOSX_DEPLOYMENT_TARGET: "14.0"
       CODE_SIGN_ENTITLEMENTS: SSHTunnelManager/App/SSHTunnelManager.entitlements
+      GENERATE_INFOPLIST_FILE: YES
     entitlements:
       path: SSHTunnelManager/App/SSHTunnelManager.entitlements
       properties:
