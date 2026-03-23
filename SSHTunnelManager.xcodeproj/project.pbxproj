@@ -17,7 +17,9 @@
 		7448C27D4B1DD21BF742236A /* KeychainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EFD25F9F49585B59AD7D68 /* KeychainServiceTests.swift */; };
 		78AA23EAB40D605328E5D6AB /* TunnelStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E53BDE4DB853BCB476F57E /* TunnelStore.swift */; };
 		9922B09E1F7E39F1EAE408E3 /* PortCheckerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8CD1AFE108B03994C56CFD1 /* PortCheckerTests.swift */; };
+		B525650851107C50B13E1C4F /* ReconnectSchedulerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862BBC573FE03893D84A68DA /* ReconnectSchedulerTests.swift */; };
 		C5D062341D82EA833A1CD40E /* TunnelStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B0B944BFD3C4AD3866E93B /* TunnelStoreTests.swift */; };
+		D48907E9863B91C7709B4CF0 /* ReconnectScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D56464A78D1542DCECBA1E0 /* ReconnectScheduler.swift */; };
 		E808F6E440DFD044796B4926 /* SSHTunnelManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFADF22E152EE5C7FDCB38EB /* SSHTunnelManagerApp.swift */; };
 		F9F8154E88D77B7BFCE03EB5 /* TunnelState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F2A76586A414A18117D984 /* TunnelState.swift */; };
 /* End PBXBuildFile section */
@@ -39,6 +41,8 @@
 		4D111C803D54D3AA851AA1FC /* SSHTunnelManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SSHTunnelManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D2CF78C217C6E72E4C70FDC /* SSHCommandBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSHCommandBuilderTests.swift; sourceTree = "<group>"; };
 		5909F6104FB2F4B5A601375B /* TunnelConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelConfig.swift; sourceTree = "<group>"; };
+		5D56464A78D1542DCECBA1E0 /* ReconnectScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReconnectScheduler.swift; sourceTree = "<group>"; };
+		862BBC573FE03893D84A68DA /* ReconnectSchedulerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReconnectSchedulerTests.swift; sourceTree = "<group>"; };
 		88BDAAB18C1E0D7D989269C0 /* TunnelConfigTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelConfigTests.swift; sourceTree = "<group>"; };
 		93B0B944BFD3C4AD3866E93B /* TunnelStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelStoreTests.swift; sourceTree = "<group>"; };
 		9CF370238BB93E42EE5ACEFA /* SSHTunnelManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SSHTunnelManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -67,6 +71,7 @@
 			children = (
 				2C5B10661CC37FC88DBEDEB7 /* KeychainService.swift */,
 				EF125BD0DA36ECE11FEB59D1 /* PortChecker.swift */,
+				5D56464A78D1542DCECBA1E0 /* ReconnectScheduler.swift */,
 				C41179959135F03EF2DCCD56 /* SSHCommandBuilder.swift */,
 				C5E53BDE4DB853BCB476F57E /* TunnelStore.swift */,
 			);
@@ -88,6 +93,7 @@
 			children = (
 				40EFD25F9F49585B59AD7D68 /* KeychainServiceTests.swift */,
 				F8CD1AFE108B03994C56CFD1 /* PortCheckerTests.swift */,
+				862BBC573FE03893D84A68DA /* ReconnectSchedulerTests.swift */,
 				4D2CF78C217C6E72E4C70FDC /* SSHCommandBuilderTests.swift */,
 				BC1A4E0702A57F60E7FDB292 /* SSHTunnelManagerTests.swift */,
 				88BDAAB18C1E0D7D989269C0 /* TunnelConfigTests.swift */,
@@ -200,6 +206,7 @@
 			files = (
 				7448C27D4B1DD21BF742236A /* KeychainServiceTests.swift in Sources */,
 				9922B09E1F7E39F1EAE408E3 /* PortCheckerTests.swift in Sources */,
+				B525650851107C50B13E1C4F /* ReconnectSchedulerTests.swift in Sources */,
 				0000F1C2C22BD4DD7C242062 /* SSHCommandBuilderTests.swift in Sources */,
 				5E56A07A702A6D3F321668F0 /* SSHTunnelManagerTests.swift in Sources */,
 				16E40854C8A5BFC5B80004B4 /* TunnelConfigTests.swift in Sources */,
@@ -213,6 +220,7 @@
 			files = (
 				63B1C8A878C0CEE3A517A3D7 /* KeychainService.swift in Sources */,
 				48D01238BF0B7BC09F87E859 /* PortChecker.swift in Sources */,
+				D48907E9863B91C7709B4CF0 /* ReconnectScheduler.swift in Sources */,
 				21EE1592F11E0FB973706733 /* SSHCommandBuilder.swift in Sources */,
 				E808F6E440DFD044796B4926 /* SSHTunnelManagerApp.swift in Sources */,
 				05B5DA2AD2D7216AA3D1E9F9 /* TunnelConfig.swift in Sources */,
