@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0000F1C2C22BD4DD7C242062 /* SSHCommandBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2CF78C217C6E72E4C70FDC /* SSHCommandBuilderTests.swift */; };
+		05B5DA2AD2D7216AA3D1E9F9 /* TunnelConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5909F6104FB2F4B5A601375B /* TunnelConfig.swift */; };
+		16E40854C8A5BFC5B80004B4 /* TunnelConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BDAAB18C1E0D7D989269C0 /* TunnelConfigTests.swift */; };
+		21EE1592F11E0FB973706733 /* SSHCommandBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41179959135F03EF2DCCD56 /* SSHCommandBuilder.swift */; };
 		5E56A07A702A6D3F321668F0 /* SSHTunnelManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1A4E0702A57F60E7FDB292 /* SSHTunnelManagerTests.swift */; };
 		E808F6E440DFD044796B4926 /* SSHTunnelManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFADF22E152EE5C7FDCB38EB /* SSHTunnelManagerApp.swift */; };
+		F9F8154E88D77B7BFCE03EB5 /* TunnelState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F2A76586A414A18117D984 /* TunnelState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -24,8 +29,13 @@
 /* Begin PBXFileReference section */
 		36D6C4C316A99536379CEF9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4D111C803D54D3AA851AA1FC /* SSHTunnelManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SSHTunnelManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4D2CF78C217C6E72E4C70FDC /* SSHCommandBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSHCommandBuilderTests.swift; sourceTree = "<group>"; };
+		5909F6104FB2F4B5A601375B /* TunnelConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelConfig.swift; sourceTree = "<group>"; };
+		88BDAAB18C1E0D7D989269C0 /* TunnelConfigTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelConfigTests.swift; sourceTree = "<group>"; };
 		9CF370238BB93E42EE5ACEFA /* SSHTunnelManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SSHTunnelManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC1A4E0702A57F60E7FDB292 /* SSHTunnelManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSHTunnelManagerTests.swift; sourceTree = "<group>"; };
+		C3F2A76586A414A18117D984 /* TunnelState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelState.swift; sourceTree = "<group>"; };
+		C41179959135F03EF2DCCD56 /* SSHCommandBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSHCommandBuilder.swift; sourceTree = "<group>"; };
 		D64B75B801CD8FC2FBFDE8ED /* SSHTunnelManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SSHTunnelManager.entitlements; sourceTree = "<group>"; };
 		FFADF22E152EE5C7FDCB38EB /* SSHTunnelManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSHTunnelManagerApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -40,10 +50,20 @@
 			);
 			sourceTree = "<group>";
 		};
+		5A994D0C4EE5984C0FCC0CF1 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				C41179959135F03EF2DCCD56 /* SSHCommandBuilder.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		7C3D533979F3F96D3170DAE0 /* SSHTunnelManager */ = {
 			isa = PBXGroup;
 			children = (
 				C1E942F1486130FC96C79DFE /* App */,
+				F46F4A1A56C894EDC479C2C9 /* Models */,
+				5A994D0C4EE5984C0FCC0CF1 /* Services */,
 			);
 			path = SSHTunnelManager;
 			sourceTree = "<group>";
@@ -51,7 +71,9 @@
 		9F88C46FF2659218C17D008A /* SSHTunnelManagerTests */ = {
 			isa = PBXGroup;
 			children = (
+				4D2CF78C217C6E72E4C70FDC /* SSHCommandBuilderTests.swift */,
 				BC1A4E0702A57F60E7FDB292 /* SSHTunnelManagerTests.swift */,
+				88BDAAB18C1E0D7D989269C0 /* TunnelConfigTests.swift */,
 			);
 			path = SSHTunnelManagerTests;
 			sourceTree = "<group>";
@@ -73,6 +95,15 @@
 				FFADF22E152EE5C7FDCB38EB /* SSHTunnelManagerApp.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		F46F4A1A56C894EDC479C2C9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5909F6104FB2F4B5A601375B /* TunnelConfig.swift */,
+				C3F2A76586A414A18117D984 /* TunnelState.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,7 +180,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0000F1C2C22BD4DD7C242062 /* SSHCommandBuilderTests.swift in Sources */,
 				5E56A07A702A6D3F321668F0 /* SSHTunnelManagerTests.swift in Sources */,
+				16E40854C8A5BFC5B80004B4 /* TunnelConfigTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,7 +190,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21EE1592F11E0FB973706733 /* SSHCommandBuilder.swift in Sources */,
 				E808F6E440DFD044796B4926 /* SSHTunnelManagerApp.swift in Sources */,
+				05B5DA2AD2D7216AA3D1E9F9 /* TunnelConfig.swift in Sources */,
+				F9F8154E88D77B7BFCE03EB5 /* TunnelState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,6 +276,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -346,6 +383,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
