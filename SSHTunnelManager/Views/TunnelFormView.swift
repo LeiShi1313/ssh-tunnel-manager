@@ -7,61 +7,62 @@ struct TunnelFormView: View {
 
     @State private var name: String = ""
     @State private var host: String = ""
+    @State private var localPort: String = ""
+    @State private var remotePort: String = ""
+
+    // Advanced (with sensible defaults)
+    @State private var showAdvanced = false
+    @State private var user: String = NSUserName()
     @State private var port: String = "22"
-    @State private var user: String = ""
+    @State private var remoteHost: String = "localhost"
+    @State private var forwardingType: ForwardingType = .local
     @State private var authMethod: AuthMethod = .key
     @State private var keyPath: String = ""
     @State private var password: String = ""
-    @State private var forwardingType: ForwardingType = .local
-    @State private var localPort: String = ""
-    @State private var remoteHost: String = "localhost"
-    @State private var remotePort: String = ""
-    @State private var autoConnect: Bool = false
+    @State private var autoConnect: Bool = true
 
     var isEditing: Bool { editing != nil }
 
     var body: some View {
         Form {
-            Section("Connection") {
+            Section {
                 TextField("Name", text: $name)
                 TextField("SSH Host", text: $host)
-                TextField("SSH Port", text: $port)
-                TextField("Username", text: $user)
+                    .textContentType(.URL)
+                HStack(spacing: 12) {
+                    TextField("Local Port", text: $localPort)
+                    Image(systemName: "arrow.left")
+                        .foregroundStyle(.secondary)
+                    TextField("Remote Port", text: $remotePort)
+                }
             }
 
-            Section("Authentication") {
-                Picker("Method", selection: $authMethod) {
-                    Text("SSH Key").tag(AuthMethod.key)
+            DisclosureGroup("Advanced", isExpanded: $showAdvanced) {
+                TextField("Username", text: $user)
+                TextField("SSH Port", text: $port)
+                TextField("Remote Host", text: $remoteHost)
+
+                Picker("Forwarding", selection: $forwardingType) {
+                    Text("Local (-L)").tag(ForwardingType.local)
+                    Text("Remote (-R)").tag(ForwardingType.remote)
+                    Text("Dynamic (-D)").tag(ForwardingType.dynamic)
+                }
+
+                Picker("Auth", selection: $authMethod) {
+                    Text("SSH Key (auto)").tag(AuthMethod.key)
                     Text("Password").tag(AuthMethod.password)
                 }
                 .pickerStyle(.segmented)
 
                 if authMethod == .key {
                     HStack {
-                        TextField("Key Path", text: $keyPath)
+                        TextField("Key Path (leave empty for default)", text: $keyPath)
                         Button("Browse...") { browseForKey() }
                     }
                 } else {
                     SecureField("Password", text: $password)
                 }
-            }
 
-            Section("Forwarding") {
-                Picker("Type", selection: $forwardingType) {
-                    Text("Local (-L)").tag(ForwardingType.local)
-                    Text("Remote (-R)").tag(ForwardingType.remote)
-                    Text("Dynamic (-D)").tag(ForwardingType.dynamic)
-                }
-
-                TextField("Local Port", text: $localPort)
-
-                if forwardingType != .dynamic {
-                    TextField("Remote Host", text: $remoteHost)
-                    TextField("Remote Port", text: $remotePort)
-                }
-            }
-
-            Section {
                 Toggle("Auto-connect on launch", isOn: $autoConnect)
             }
 
@@ -82,9 +83,8 @@ struct TunnelFormView: View {
     }
 
     private var isValid: Bool {
-        !name.isEmpty && !host.isEmpty && !user.isEmpty &&
-        Int(port) != nil && Int(localPort) != nil &&
-        (forwardingType == .dynamic || (Int(remotePort) != nil && !remoteHost.isEmpty))
+        !name.isEmpty && !host.isEmpty && Int(localPort) != nil &&
+        (forwardingType == .dynamic || Int(remotePort) != nil)
     }
 
     private func loadEditing() {
@@ -100,20 +100,28 @@ struct TunnelFormView: View {
         remoteHost = config.remoteHost ?? "localhost"
         remotePort = config.remotePort.map { "\($0)" } ?? ""
         autoConnect = config.autoConnect
+        // Show advanced if any non-default values
+        if config.port != 22 || config.user != NSUserName() ||
+           config.remoteHost != "localhost" && config.remoteHost != nil ||
+           config.forwardingType != .local || config.authMethod != .key ||
+           config.keyPath != nil {
+            showAdvanced = true
+        }
     }
 
     private func save() {
+        let resolvedUser = user.isEmpty ? NSUserName() : user
         let config = TunnelConfig(
             id: editing?.id ?? UUID(),
             name: name,
             host: host,
             port: Int(port) ?? 22,
-            user: user,
+            user: resolvedUser,
             authMethod: authMethod,
             keyPath: authMethod == .key ? (keyPath.isEmpty ? nil : keyPath) : nil,
             forwardingType: forwardingType,
             localPort: Int(localPort) ?? 0,
-            remoteHost: forwardingType == .dynamic ? nil : remoteHost,
+            remoteHost: forwardingType == .dynamic ? nil : (remoteHost.isEmpty ? "localhost" : remoteHost),
             remotePort: forwardingType == .dynamic ? nil : Int(remotePort),
             autoConnect: autoConnect,
             enabled: editing?.enabled ?? true
