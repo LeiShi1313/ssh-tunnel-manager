@@ -9,10 +9,13 @@
 /* Begin PBXBuildFile section */
 		0000F1C2C22BD4DD7C242062 /* SSHCommandBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2CF78C217C6E72E4C70FDC /* SSHCommandBuilderTests.swift */; };
 		05B5DA2AD2D7216AA3D1E9F9 /* TunnelConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5909F6104FB2F4B5A601375B /* TunnelConfig.swift */; };
+		132C8BAC93109320027E82EB /* TunnelProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFE4A20F8124A7ECE605B66 /* TunnelProcess.swift */; };
 		16E40854C8A5BFC5B80004B4 /* TunnelConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BDAAB18C1E0D7D989269C0 /* TunnelConfigTests.swift */; };
 		21EE1592F11E0FB973706733 /* SSHCommandBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41179959135F03EF2DCCD56 /* SSHCommandBuilder.swift */; };
+		39361CD241B3BB35FC5AC0EC /* AskpassHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036B4773BB3F7E66A015686E /* AskpassHelper.swift */; };
 		48D01238BF0B7BC09F87E859 /* PortChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF125BD0DA36ECE11FEB59D1 /* PortChecker.swift */; };
 		5E56A07A702A6D3F321668F0 /* SSHTunnelManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1A4E0702A57F60E7FDB292 /* SSHTunnelManagerTests.swift */; };
+		5F64D06E9EF13B62C1A83FDB /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7459077F5FB4D8ED0B355716 /* NotificationService.swift */; };
 		63B1C8A878C0CEE3A517A3D7 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5B10661CC37FC88DBEDEB7 /* KeychainService.swift */; };
 		7448C27D4B1DD21BF742236A /* KeychainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EFD25F9F49585B59AD7D68 /* KeychainServiceTests.swift */; };
 		78AA23EAB40D605328E5D6AB /* TunnelStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E53BDE4DB853BCB476F57E /* TunnelStore.swift */; };
@@ -35,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		036B4773BB3F7E66A015686E /* AskpassHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskpassHelper.swift; sourceTree = "<group>"; };
 		2C5B10661CC37FC88DBEDEB7 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		36D6C4C316A99536379CEF9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		40EFD25F9F49585B59AD7D68 /* KeychainServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainServiceTests.swift; sourceTree = "<group>"; };
@@ -42,6 +46,7 @@
 		4D2CF78C217C6E72E4C70FDC /* SSHCommandBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSHCommandBuilderTests.swift; sourceTree = "<group>"; };
 		5909F6104FB2F4B5A601375B /* TunnelConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelConfig.swift; sourceTree = "<group>"; };
 		5D56464A78D1542DCECBA1E0 /* ReconnectScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReconnectScheduler.swift; sourceTree = "<group>"; };
+		7459077F5FB4D8ED0B355716 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		862BBC573FE03893D84A68DA /* ReconnectSchedulerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReconnectSchedulerTests.swift; sourceTree = "<group>"; };
 		88BDAAB18C1E0D7D989269C0 /* TunnelConfigTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelConfigTests.swift; sourceTree = "<group>"; };
 		93B0B944BFD3C4AD3866E93B /* TunnelStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelStoreTests.swift; sourceTree = "<group>"; };
@@ -50,6 +55,7 @@
 		C3F2A76586A414A18117D984 /* TunnelState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelState.swift; sourceTree = "<group>"; };
 		C41179959135F03EF2DCCD56 /* SSHCommandBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSHCommandBuilder.swift; sourceTree = "<group>"; };
 		C5E53BDE4DB853BCB476F57E /* TunnelStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelStore.swift; sourceTree = "<group>"; };
+		CBFE4A20F8124A7ECE605B66 /* TunnelProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelProcess.swift; sourceTree = "<group>"; };
 		D64B75B801CD8FC2FBFDE8ED /* SSHTunnelManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SSHTunnelManager.entitlements; sourceTree = "<group>"; };
 		EF125BD0DA36ECE11FEB59D1 /* PortChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortChecker.swift; sourceTree = "<group>"; };
 		F8CD1AFE108B03994C56CFD1 /* PortCheckerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortCheckerTests.swift; sourceTree = "<group>"; };
@@ -69,10 +75,13 @@
 		5A994D0C4EE5984C0FCC0CF1 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				036B4773BB3F7E66A015686E /* AskpassHelper.swift */,
 				2C5B10661CC37FC88DBEDEB7 /* KeychainService.swift */,
+				7459077F5FB4D8ED0B355716 /* NotificationService.swift */,
 				EF125BD0DA36ECE11FEB59D1 /* PortChecker.swift */,
 				5D56464A78D1542DCECBA1E0 /* ReconnectScheduler.swift */,
 				C41179959135F03EF2DCCD56 /* SSHCommandBuilder.swift */,
+				CBFE4A20F8124A7ECE605B66 /* TunnelProcess.swift */,
 				C5E53BDE4DB853BCB476F57E /* TunnelStore.swift */,
 			);
 			path = Services;
@@ -218,12 +227,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39361CD241B3BB35FC5AC0EC /* AskpassHelper.swift in Sources */,
 				63B1C8A878C0CEE3A517A3D7 /* KeychainService.swift in Sources */,
+				5F64D06E9EF13B62C1A83FDB /* NotificationService.swift in Sources */,
 				48D01238BF0B7BC09F87E859 /* PortChecker.swift in Sources */,
 				D48907E9863B91C7709B4CF0 /* ReconnectScheduler.swift in Sources */,
 				21EE1592F11E0FB973706733 /* SSHCommandBuilder.swift in Sources */,
 				E808F6E440DFD044796B4926 /* SSHTunnelManagerApp.swift in Sources */,
 				05B5DA2AD2D7216AA3D1E9F9 /* TunnelConfig.swift in Sources */,
+				132C8BAC93109320027E82EB /* TunnelProcess.swift in Sources */,
 				F9F8154E88D77B7BFCE03EB5 /* TunnelState.swift in Sources */,
 				78AA23EAB40D605328E5D6AB /* TunnelStore.swift in Sources */,
 			);
