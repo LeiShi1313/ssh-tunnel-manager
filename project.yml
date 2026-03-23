@@ -31,3 +31,4 @@ targets:
       - target: SSHTunnelManager
     settings:
       PRODUCT_BUNDLE_IDENTIFIER: com.lei.ssh-tunnel-manager.tests
+      GENERATE_INFOPLIST_FILE: YES
