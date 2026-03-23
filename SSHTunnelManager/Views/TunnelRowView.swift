@@ -30,13 +30,6 @@ struct TunnelRowView: View {
                     .foregroundStyle(.secondary)
             }
 
-            Button(action: onEdit) {
-                Image(systemName: "pencil")
-                    .font(.system(size: 12))
-                    .foregroundStyle(.secondary)
-            }
-            .buttonStyle(.plain)
-
             Button(action: onToggle) {
                 Image(systemName: isActive ? "stop.circle.fill" : "play.circle.fill")
                     .font(.system(size: 16))
