@@ -19,6 +19,8 @@ class TunnelManager {
 
     private let activeTunnelIdsKey = "activeTunnelIds"
 
+    private var statusTimer: Timer?
+
     init(
         store: TunnelStore = TunnelStore(),
         keychain: KeychainService = KeychainService(),
@@ -46,9 +48,30 @@ class TunnelManager {
                 connect(tunnel.id)
             }
         }
+
+        // Periodically sync UI state with actual process status
+        startStatusTimer()
+    }
+
+    private func startStatusTimer() {
+        statusTimer?.invalidate()
+        statusTimer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true) { [weak self] _ in
+            self?.syncStates()
+        }
+    }
+
+    private func syncStates() {
+        for (id, proc) in processes {
+            if proc.isRunning && states[id] != .connected {
+                states[id] = .connected
+                retryCounts[id] = 0
+            }
+        }
     }
 
     func shutdownAll() {
+        statusTimer?.invalidate()
+        statusTimer = nil
         saveActiveTunnelIds()
         for (id, _) in processes {
             cancelRetry(for: id)
@@ -114,12 +137,6 @@ class TunnelManager {
         do {
             try proc.start()
             processes[id] = proc
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
-                if proc.isRunning {
-                    self?.states[id] = .connected
-                    self?.retryCounts[id] = 0
-                }
-            }
         } catch {
             states[id] = .failed(reason: error.localizedDescription)
             notifications.sendDisconnected(tunnelName: config.name, reconnecting: false)
