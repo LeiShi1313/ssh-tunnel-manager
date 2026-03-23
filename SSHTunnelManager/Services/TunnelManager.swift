@@ -42,6 +42,10 @@ class TunnelManager {
         for tunnel in tunnels {
             states[tunnel.id] = .disconnected
         }
+
+        // Kill orphaned SSH processes from previous app instance
+        killOrphanedSSHProcesses()
+
         let activeIds = loadActiveTunnelIds()
         for tunnel in tunnels where tunnel.enabled {
             if tunnel.autoConnect || activeIds.contains(tunnel.id) {
@@ -51,6 +55,28 @@ class TunnelManager {
 
         // Periodically sync UI state with actual process status
         startStatusTimer()
+    }
+
+    private func killOrphanedSSHProcesses() {
+        let pipe = Pipe()
+        let proc = Process()
+        proc.executableURL = URL(fileURLWithPath: "/usr/bin/pgrep")
+        proc.arguments = ["-f", "ssh -N -o ExitOnForwardFailure=yes"]
+        proc.standardOutput = pipe
+        proc.standardError = FileHandle.nullDevice
+        try? proc.run()
+        proc.waitUntilExit()
+
+        let data = pipe.fileHandleForReading.readDataToEndOfFile()
+        guard let output = String(data: data, encoding: .utf8) else { return }
+
+        for line in output.split(separator: "\n") {
+            if let pid = Int32(line.trimmingCharacters(in: .whitespaces)) {
+                kill(pid, SIGTERM)
+            }
+        }
+        // Brief wait for ports to be released
+        usleep(500_000)
     }
 
     private func startStatusTimer() {
