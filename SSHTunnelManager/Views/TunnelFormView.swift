@@ -24,47 +24,87 @@ struct TunnelFormView: View {
     var isEditing: Bool { editing != nil }
 
     var body: some View {
-        Form {
-            Section {
-                TextField("Name", text: $name)
-                TextField("SSH Host", text: $host)
-                    .textContentType(.URL)
-                HStack(spacing: 12) {
-                    TextField("Local Port", text: $localPort)
-                    Image(systemName: "arrow.left")
-                        .foregroundStyle(.secondary)
-                    TextField("Remote Port", text: $remotePort)
+        VStack(alignment: .leading, spacing: 16) {
+            Text(isEditing ? "Edit Tunnel" : "New Tunnel")
+                .font(.headline)
+
+            LabeledField("Name") {
+                TextField("e.g. Dev DB", text: $name)
+            }
+
+            LabeledField("SSH Host") {
+                TextField("e.g. myserver.com", text: $host)
+            }
+
+            HStack(spacing: 12) {
+                LabeledField("Local Port") {
+                    TextField("e.g. 5432", text: $localPort)
+                }
+                Text("←")
+                    .foregroundStyle(.secondary)
+                    .padding(.top, 18)
+                LabeledField("Remote Port") {
+                    TextField("e.g. 5432", text: $remotePort)
                 }
             }
+
+            Divider()
 
             DisclosureGroup("Advanced", isExpanded: $showAdvanced) {
-                TextField("Username", text: $user)
-                TextField("SSH Port", text: $port)
-                TextField("Remote Host", text: $remoteHost)
-
-                Picker("Forwarding", selection: $forwardingType) {
-                    Text("Local (-L)").tag(ForwardingType.local)
-                    Text("Remote (-R)").tag(ForwardingType.remote)
-                    Text("Dynamic (-D)").tag(ForwardingType.dynamic)
-                }
-
-                Picker("Auth", selection: $authMethod) {
-                    Text("SSH Key (auto)").tag(AuthMethod.key)
-                    Text("Password").tag(AuthMethod.password)
-                }
-                .pickerStyle(.segmented)
-
-                if authMethod == .key {
-                    HStack {
-                        TextField("Key Path (leave empty for default)", text: $keyPath)
-                        Button("Browse...") { browseForKey() }
+                VStack(alignment: .leading, spacing: 12) {
+                    HStack(spacing: 12) {
+                        LabeledField("Username") {
+                            TextField("", text: $user)
+                        }
+                        LabeledField("SSH Port") {
+                            TextField("22", text: $port)
+                                .frame(width: 60)
+                        }
                     }
-                } else {
-                    SecureField("Password", text: $password)
-                }
 
-                Toggle("Auto-connect on launch", isOn: $autoConnect)
+                    LabeledField("Remote Host") {
+                        TextField("localhost", text: $remoteHost)
+                    }
+
+                    LabeledField("Forwarding Type") {
+                        Picker("", selection: $forwardingType) {
+                            Text("Local (-L)").tag(ForwardingType.local)
+                            Text("Remote (-R)").tag(ForwardingType.remote)
+                            Text("Dynamic (-D)").tag(ForwardingType.dynamic)
+                        }
+                        .labelsHidden()
+                        .pickerStyle(.segmented)
+                    }
+
+                    LabeledField("Authentication") {
+                        Picker("", selection: $authMethod) {
+                            Text("SSH Key (auto)").tag(AuthMethod.key)
+                            Text("Password").tag(AuthMethod.password)
+                        }
+                        .labelsHidden()
+                        .pickerStyle(.segmented)
+                    }
+
+                    if authMethod == .key {
+                        LabeledField("Key Path") {
+                            HStack {
+                                TextField("Leave empty for default", text: $keyPath)
+                                Button("Browse...") { browseForKey() }
+                            }
+                        }
+                    } else {
+                        LabeledField("Password") {
+                            SecureField("", text: $password)
+                        }
+                    }
+
+                    Toggle("Auto-connect on launch", isOn: $autoConnect)
+                        .padding(.top, 4)
+                }
+                .padding(.top, 8)
             }
+
+            Spacer()
 
             HStack {
                 Button("Cancel") { onDismiss?() }
@@ -74,11 +114,9 @@ struct TunnelFormView: View {
                     .keyboardShortcut(.defaultAction)
                     .disabled(!isValid)
             }
-            .padding(.top, 8)
         }
-        .formStyle(.grouped)
-        .frame(width: 400)
-        .padding()
+        .padding(20)
+        .frame(width: 420, height: showAdvanced ? 520 : 280)
         .onAppear { loadEditing() }
     }
 
@@ -100,9 +138,8 @@ struct TunnelFormView: View {
         remoteHost = config.remoteHost ?? "localhost"
         remotePort = config.remotePort.map { "\($0)" } ?? ""
         autoConnect = config.autoConnect
-        // Show advanced if any non-default values
         if config.port != 22 || config.user != NSUserName() ||
-           config.remoteHost != "localhost" && config.remoteHost != nil ||
+           (config.remoteHost != "localhost" && config.remoteHost != nil) ||
            config.forwardingType != .local || config.authMethod != .key ||
            config.keyPath != nil {
             showAdvanced = true
@@ -146,6 +183,26 @@ struct TunnelFormView: View {
         panel.directoryURL = URL(fileURLWithPath: NSHomeDirectory()).appendingPathComponent(".ssh")
         if panel.runModal() == .OK, let url = panel.url {
             keyPath = url.path
+        }
+    }
+}
+
+struct LabeledField<Content: View>: View {
+    let label: String
+    let content: Content
+
+    init(_ label: String, @ViewBuilder content: () -> Content) {
+        self.label = label
+        self.content = content()
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Text(label)
+                .font(.caption)
+                .foregroundStyle(.secondary)
+            content
+                .textFieldStyle(.roundedBorder)
         }
     }
 }
