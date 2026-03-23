@@ -20,6 +20,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     let manager = TunnelManager()
 
     func applicationDidFinishLaunching(_ notification: Notification) {
+        // Register UserDefaults defaults (AppStorage defaults only apply in SwiftUI views)
+        UserDefaults.standard.register(defaults: [
+            "reconnectEnabled": true,
+            "reconnectMaxRetries": 0,
+        ])
+
         // Skip notification setup when running under XCTest to avoid UNUserNotificationCenter crash
         let isRunningTests = ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil
         if !isRunningTests {
