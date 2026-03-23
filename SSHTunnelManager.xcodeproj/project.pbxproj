@@ -23,6 +23,7 @@
 		7448C27D4B1DD21BF742236A /* KeychainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EFD25F9F49585B59AD7D68 /* KeychainServiceTests.swift */; };
 		78AA23EAB40D605328E5D6AB /* TunnelStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E53BDE4DB853BCB476F57E /* TunnelStore.swift */; };
 		7B13417F205DB772A3A7E785 /* TunnelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5050828A54BFB208B0F2F45E /* TunnelManager.swift */; };
+		7BEFD1FEE306416040E7AFEE /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 9AD97ACA3A400D6DF030517C /* AppIcon.icns */; };
 		9922B09E1F7E39F1EAE408E3 /* PortCheckerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8CD1AFE108B03994C56CFD1 /* PortCheckerTests.swift */; };
 		9E254BE654C3B3F69D83062F /* TunnelFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2399048E7153D0CA424F2371 /* TunnelFormView.swift */; };
 		B525650851107C50B13E1C4F /* ReconnectSchedulerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862BBC573FE03893D84A68DA /* ReconnectSchedulerTests.swift */; };
@@ -63,6 +64,7 @@
 		862BBC573FE03893D84A68DA /* ReconnectSchedulerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReconnectSchedulerTests.swift; sourceTree = "<group>"; };
 		88BDAAB18C1E0D7D989269C0 /* TunnelConfigTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelConfigTests.swift; sourceTree = "<group>"; };
 		93B0B944BFD3C4AD3866E93B /* TunnelStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelStoreTests.swift; sourceTree = "<group>"; };
+		9AD97ACA3A400D6DF030517C /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AppIcon.icns; sourceTree = "<group>"; };
 		9CF370238BB93E42EE5ACEFA /* SSHTunnelManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SSHTunnelManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC1A4E0702A57F60E7FDB292 /* SSHTunnelManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSHTunnelManagerTests.swift; sourceTree = "<group>"; };
 		C3F2A76586A414A18117D984 /* TunnelState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelState.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 		C1E942F1486130FC96C79DFE /* App */ = {
 			isa = PBXGroup;
 			children = (
+				9AD97ACA3A400D6DF030517C /* AppIcon.icns */,
 				36D6C4C316A99536379CEF9D /* Info.plist */,
 				D64B75B801CD8FC2FBFDE8ED /* SSHTunnelManager.entitlements */,
 				FFADF22E152EE5C7FDCB38EB /* SSHTunnelManagerApp.swift */,
@@ -176,6 +179,7 @@
 			buildConfigurationList = 3AC811B9C51C50C031DAB4B2 /* Build configuration list for PBXNativeTarget "SSHTunnelManager" */;
 			buildPhases = (
 				F3DF69130F6BB3DD2895B6BB /* Sources */,
+				E3AC682AAD1FEE57B7602C5F /* Resources */,
 			);
 			buildRules = (
 			);
@@ -236,6 +240,17 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E3AC682AAD1FEE57B7602C5F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7BEFD1FEE306416040E7AFEE /* AppIcon.icns in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C382A18CEE221B021E9608EF /* Sources */ = {

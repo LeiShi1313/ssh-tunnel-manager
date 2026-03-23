@@ -16,11 +16,13 @@ targets:
       path: SSHTunnelManager/App/Info.plist
       properties:
         LSUIElement: true
+        CFBundleIconFile: AppIcon
     settings:
       PRODUCT_BUNDLE_IDENTIFIER: com.lei.ssh-tunnel-manager
       MACOSX_DEPLOYMENT_TARGET: "14.0"
       CODE_SIGN_ENTITLEMENTS: SSHTunnelManager/App/SSHTunnelManager.entitlements
       GENERATE_INFOPLIST_FILE: YES
+      COMBINE_HIDPI_IMAGES: YES
     entitlements:
       path: SSHTunnelManager/App/SSHTunnelManager.entitlements
       properties:
