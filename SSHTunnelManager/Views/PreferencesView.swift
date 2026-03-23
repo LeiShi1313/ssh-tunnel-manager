@@ -2,7 +2,7 @@ import SwiftUI
 import ServiceManagement
 
 struct PreferencesView: View {
-    @Environment(\.dismiss) private var dismiss
+    var onDismiss: (() -> Void)?
     @AppStorage("reconnectEnabled") private var reconnectEnabled = true
     @AppStorage("reconnectMaxRetries") private var reconnectMaxRetries = 0
     @State private var launchAtLogin = SMAppService.mainApp.status == .enabled
@@ -42,7 +42,7 @@ struct PreferencesView: View {
 
             HStack {
                 Spacer()
-                Button("Done") { dismiss() }
+                Button("Done") { onDismiss?() }
                     .keyboardShortcut(.defaultAction)
             }
             .padding(.top, 8)

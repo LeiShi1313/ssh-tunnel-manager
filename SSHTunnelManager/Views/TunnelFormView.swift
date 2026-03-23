@@ -1,9 +1,9 @@
 import SwiftUI
 
 struct TunnelFormView: View {
-    @Environment(\.dismiss) private var dismiss
     var manager: TunnelManager
     var editing: TunnelConfig?
+    var onDismiss: (() -> Void)?
 
     @State private var name: String = ""
     @State private var host: String = ""
@@ -66,7 +66,7 @@ struct TunnelFormView: View {
             }
 
             HStack {
-                Button("Cancel") { dismiss() }
+                Button("Cancel") { onDismiss?() }
                     .keyboardShortcut(.cancelAction)
                 Spacer()
                 Button(isEditing ? "Save" : "Add") { save() }
@@ -126,7 +126,7 @@ struct TunnelFormView: View {
         } else {
             manager.addTunnel(config, password: pwd)
         }
-        dismiss()
+        onDismiss?()
     }
 
     private func browseForKey() {

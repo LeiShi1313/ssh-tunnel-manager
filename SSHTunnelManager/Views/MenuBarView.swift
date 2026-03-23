@@ -2,9 +2,6 @@ import SwiftUI
 
 struct MenuBarView: View {
     @Bindable var manager: TunnelManager
-    @State private var showAddForm = false
-    @State private var editingTunnel: TunnelConfig?
-    @State private var showPreferences = false
 
     var body: some View {
         VStack(spacing: 0) {
@@ -20,7 +17,7 @@ struct MenuBarView: View {
                                 config: tunnel,
                                 state: manager.states[tunnel.id] ?? .disconnected,
                                 onToggle: { manager.toggleConnection(tunnel.id) },
-                                onEdit: { editingTunnel = tunnel },
+                                onEdit: { openEditForm(tunnel) },
                                 onDuplicate: { manager.duplicateTunnel(tunnel.id) },
                                 onDelete: { manager.deleteTunnel(tunnel.id) }
                             )
@@ -34,14 +31,14 @@ struct MenuBarView: View {
             Divider()
 
             HStack {
-                Button(action: { showAddForm = true }) {
+                Button(action: { openAddForm() }) {
                     Image(systemName: "plus")
                 }
                 .buttonStyle(.plain)
 
                 Spacer()
 
-                Button(action: { showPreferences = true }) {
+                Button(action: { openPreferences() }) {
                     Image(systemName: "gear")
                 }
                 .buttonStyle(.plain)
@@ -54,14 +51,36 @@ struct MenuBarView: View {
             .padding(8)
         }
         .frame(width: 320)
-        .sheet(isPresented: $showAddForm) {
-            TunnelFormView(manager: manager)
-        }
-        .sheet(item: $editingTunnel) { tunnel in
-            TunnelFormView(manager: manager, editing: tunnel)
-        }
-        .sheet(isPresented: $showPreferences) {
-            PreferencesView()
-        }
+    }
+
+    private func openAddForm() {
+        WindowManager.shared.openWindow(
+            id: "add-tunnel",
+            title: "Add Tunnel",
+            content: TunnelFormView(manager: manager, onDismiss: {
+                WindowManager.shared.closeWindow(id: "add-tunnel")
+            })
+        )
+    }
+
+    private func openEditForm(_ tunnel: TunnelConfig) {
+        let windowId = "edit-tunnel-\(tunnel.id)"
+        WindowManager.shared.openWindow(
+            id: windowId,
+            title: "Edit Tunnel",
+            content: TunnelFormView(manager: manager, editing: tunnel, onDismiss: {
+                WindowManager.shared.closeWindow(id: windowId)
+            })
+        )
+    }
+
+    private func openPreferences() {
+        WindowManager.shared.openWindow(
+            id: "preferences",
+            title: "Preferences",
+            content: PreferencesView(onDismiss: {
+                WindowManager.shared.closeWindow(id: "preferences")
+            })
+        )
     }
 }

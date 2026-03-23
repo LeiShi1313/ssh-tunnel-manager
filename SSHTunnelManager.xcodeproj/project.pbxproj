@@ -28,6 +28,7 @@
 		B525650851107C50B13E1C4F /* ReconnectSchedulerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862BBC573FE03893D84A68DA /* ReconnectSchedulerTests.swift */; };
 		C5D062341D82EA833A1CD40E /* TunnelStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B0B944BFD3C4AD3866E93B /* TunnelStoreTests.swift */; };
 		D48907E9863B91C7709B4CF0 /* ReconnectScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D56464A78D1542DCECBA1E0 /* ReconnectScheduler.swift */; };
+		D72B3BD0653D2BD8A703D95B /* WindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F6B51A6C5949650A9AC977 /* WindowManager.swift */; };
 		E808F6E440DFD044796B4926 /* SSHTunnelManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFADF22E152EE5C7FDCB38EB /* SSHTunnelManagerApp.swift */; };
 		F2F2349EEE2948F814A4E039 /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023F4841D6F4E17488711643 /* PreferencesView.swift */; };
 		F9F8154E88D77B7BFCE03EB5 /* TunnelState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F2A76586A414A18117D984 /* TunnelState.swift */; };
@@ -49,6 +50,7 @@
 		097B7E8B9D18A9FC0E4CDF74 /* TunnelRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelRowView.swift; sourceTree = "<group>"; };
 		2399048E7153D0CA424F2371 /* TunnelFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelFormView.swift; sourceTree = "<group>"; };
 		2C5B10661CC37FC88DBEDEB7 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		30F6B51A6C5949650A9AC977 /* WindowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowManager.swift; sourceTree = "<group>"; };
 		32AD7EB2C57EEB5FDAABF8FA /* MenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarView.swift; sourceTree = "<group>"; };
 		36D6C4C316A99536379CEF9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		40EFD25F9F49585B59AD7D68 /* KeychainServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainServiceTests.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				5050828A54BFB208B0F2F45E /* TunnelManager.swift */,
 				CBFE4A20F8124A7ECE605B66 /* TunnelProcess.swift */,
 				C5E53BDE4DB853BCB476F57E /* TunnelStore.swift */,
+				30F6B51A6C5949650A9AC977 /* WindowManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 				04CCD656AF3FFBBB48A49FD4 /* TunnelRowView.swift in Sources */,
 				F9F8154E88D77B7BFCE03EB5 /* TunnelState.swift in Sources */,
 				78AA23EAB40D605328E5D6AB /* TunnelStore.swift in Sources */,
+				D72B3BD0653D2BD8A703D95B /* WindowManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
