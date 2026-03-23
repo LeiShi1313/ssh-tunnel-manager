@@ -25,7 +25,6 @@ struct TunnelFormView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            ScrollView {
                 VStack(alignment: .leading, spacing: 16) {
                     Text(isEditing ? "Edit Tunnel" : "New Tunnel")
                         .font(.headline)
@@ -107,7 +106,6 @@ struct TunnelFormView: View {
                     }
                 }
                 .padding(20)
-            }
 
             Divider()
 
@@ -122,8 +120,9 @@ struct TunnelFormView: View {
             .padding(16)
         }
         .frame(width: 420)
-        .frame(minHeight: 300, maxHeight: 560)
+        .fixedSize(horizontal: false, vertical: true)
         .onAppear { loadEditing() }
+        .animation(.easeInOut(duration: 0.2), value: showAdvanced)
     }
 
     private var isValid: Bool {
