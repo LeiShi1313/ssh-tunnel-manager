@@ -19,6 +19,7 @@
 		63B1C8A878C0CEE3A517A3D7 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5B10661CC37FC88DBEDEB7 /* KeychainService.swift */; };
 		7448C27D4B1DD21BF742236A /* KeychainServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EFD25F9F49585B59AD7D68 /* KeychainServiceTests.swift */; };
 		78AA23EAB40D605328E5D6AB /* TunnelStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E53BDE4DB853BCB476F57E /* TunnelStore.swift */; };
+		7B13417F205DB772A3A7E785 /* TunnelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5050828A54BFB208B0F2F45E /* TunnelManager.swift */; };
 		9922B09E1F7E39F1EAE408E3 /* PortCheckerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8CD1AFE108B03994C56CFD1 /* PortCheckerTests.swift */; };
 		B525650851107C50B13E1C4F /* ReconnectSchedulerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862BBC573FE03893D84A68DA /* ReconnectSchedulerTests.swift */; };
 		C5D062341D82EA833A1CD40E /* TunnelStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B0B944BFD3C4AD3866E93B /* TunnelStoreTests.swift */; };
@@ -44,6 +45,7 @@
 		40EFD25F9F49585B59AD7D68 /* KeychainServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainServiceTests.swift; sourceTree = "<group>"; };
 		4D111C803D54D3AA851AA1FC /* SSHTunnelManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SSHTunnelManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D2CF78C217C6E72E4C70FDC /* SSHCommandBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSHCommandBuilderTests.swift; sourceTree = "<group>"; };
+		5050828A54BFB208B0F2F45E /* TunnelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelManager.swift; sourceTree = "<group>"; };
 		5909F6104FB2F4B5A601375B /* TunnelConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelConfig.swift; sourceTree = "<group>"; };
 		5D56464A78D1542DCECBA1E0 /* ReconnectScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReconnectScheduler.swift; sourceTree = "<group>"; };
 		7459077F5FB4D8ED0B355716 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				EF125BD0DA36ECE11FEB59D1 /* PortChecker.swift */,
 				5D56464A78D1542DCECBA1E0 /* ReconnectScheduler.swift */,
 				C41179959135F03EF2DCCD56 /* SSHCommandBuilder.swift */,
+				5050828A54BFB208B0F2F45E /* TunnelManager.swift */,
 				CBFE4A20F8124A7ECE605B66 /* TunnelProcess.swift */,
 				C5E53BDE4DB853BCB476F57E /* TunnelStore.swift */,
 			);
@@ -235,6 +238,7 @@
 				21EE1592F11E0FB973706733 /* SSHCommandBuilder.swift in Sources */,
 				E808F6E440DFD044796B4926 /* SSHTunnelManagerApp.swift in Sources */,
 				05B5DA2AD2D7216AA3D1E9F9 /* TunnelConfig.swift in Sources */,
+				7B13417F205DB772A3A7E785 /* TunnelManager.swift in Sources */,
 				132C8BAC93109320027E82EB /* TunnelProcess.swift in Sources */,
 				F9F8154E88D77B7BFCE03EB5 /* TunnelState.swift in Sources */,
 				78AA23EAB40D605328E5D6AB /* TunnelStore.swift in Sources */,
@@ -303,7 +307,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -377,7 +381,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -399,7 +403,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lei.ssh-tunnel-manager";
 				SDKROOT = macosx;
 			};
@@ -416,7 +420,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lei.ssh-tunnel-manager";
 				SDKROOT = macosx;
 			};

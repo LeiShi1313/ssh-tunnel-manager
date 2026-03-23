@@ -2,7 +2,7 @@ name: SSHTunnelManager
 options:
   bundleIdPrefix: com.lei.ssh-tunnel-manager
   deploymentTarget:
-    macOS: "13.0"
+    macOS: "14.0"
   xcodeVersion: "15.0"
 settings:
   SWIFT_VERSION: "5.9"
@@ -15,7 +15,7 @@ targets:
     settings:
       INFOPLIST_FILE: SSHTunnelManager/App/Info.plist
       PRODUCT_BUNDLE_IDENTIFIER: com.lei.ssh-tunnel-manager
-      MACOSX_DEPLOYMENT_TARGET: "13.0"
+      MACOSX_DEPLOYMENT_TARGET: "14.0"
       CODE_SIGN_ENTITLEMENTS: SSHTunnelManager/App/SSHTunnelManager.entitlements
     entitlements:
       path: SSHTunnelManager/App/SSHTunnelManager.entitlements
