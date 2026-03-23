@@ -24,87 +24,92 @@ struct TunnelFormView: View {
     var isEditing: Bool { editing != nil }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            Text(isEditing ? "Edit Tunnel" : "New Tunnel")
-                .font(.headline)
+        VStack(alignment: .leading, spacing: 0) {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 16) {
+                    Text(isEditing ? "Edit Tunnel" : "New Tunnel")
+                        .font(.headline)
 
-            LabeledField("Name") {
-                TextField("e.g. Dev DB", text: $name)
-            }
+                    LabeledField("Name") {
+                        TextField("e.g. Dev DB", text: $name)
+                    }
 
-            LabeledField("SSH Host") {
-                TextField("e.g. myserver.com", text: $host)
-            }
+                    LabeledField("SSH Host") {
+                        TextField("e.g. myserver.com", text: $host)
+                    }
 
-            HStack(spacing: 12) {
-                LabeledField("Local Port") {
-                    TextField("e.g. 5432", text: $localPort)
+                    HStack(spacing: 12) {
+                        LabeledField("Local Port") {
+                            TextField("e.g. 5432", text: $localPort)
+                        }
+                        Text("←")
+                            .foregroundStyle(.secondary)
+                            .padding(.top, 18)
+                        LabeledField("Remote Port") {
+                            TextField("e.g. 5432", text: $remotePort)
+                        }
+                    }
+
+                    Divider()
+
+                    DisclosureGroup("Advanced", isExpanded: $showAdvanced) {
+                        VStack(alignment: .leading, spacing: 12) {
+                            HStack(spacing: 12) {
+                                LabeledField("Username") {
+                                    TextField("", text: $user)
+                                }
+                                LabeledField("SSH Port") {
+                                    TextField("22", text: $port)
+                                        .frame(width: 60)
+                                }
+                            }
+
+                            LabeledField("Remote Host") {
+                                TextField("localhost", text: $remoteHost)
+                            }
+
+                            LabeledField("Forwarding Type") {
+                                Picker("", selection: $forwardingType) {
+                                    Text("Local (-L)").tag(ForwardingType.local)
+                                    Text("Remote (-R)").tag(ForwardingType.remote)
+                                    Text("Dynamic (-D)").tag(ForwardingType.dynamic)
+                                }
+                                .labelsHidden()
+                                .pickerStyle(.segmented)
+                            }
+
+                            LabeledField("Authentication") {
+                                Picker("", selection: $authMethod) {
+                                    Text("SSH Key (auto)").tag(AuthMethod.key)
+                                    Text("Password").tag(AuthMethod.password)
+                                }
+                                .labelsHidden()
+                                .pickerStyle(.segmented)
+                            }
+
+                            if authMethod == .key {
+                                LabeledField("Key Path") {
+                                    HStack {
+                                        TextField("Leave empty for default", text: $keyPath)
+                                        Button("Browse...") { browseForKey() }
+                                    }
+                                }
+                            } else {
+                                LabeledField("Password") {
+                                    SecureField("", text: $password)
+                                }
+                            }
+
+                            Toggle("Auto-connect on launch", isOn: $autoConnect)
+                                .padding(.top, 4)
+                        }
+                        .padding(.top, 8)
+                    }
                 }
-                Text("←")
-                    .foregroundStyle(.secondary)
-                    .padding(.top, 18)
-                LabeledField("Remote Port") {
-                    TextField("e.g. 5432", text: $remotePort)
-                }
+                .padding(20)
             }
 
             Divider()
-
-            DisclosureGroup("Advanced", isExpanded: $showAdvanced) {
-                VStack(alignment: .leading, spacing: 12) {
-                    HStack(spacing: 12) {
-                        LabeledField("Username") {
-                            TextField("", text: $user)
-                        }
-                        LabeledField("SSH Port") {
-                            TextField("22", text: $port)
-                                .frame(width: 60)
-                        }
-                    }
-
-                    LabeledField("Remote Host") {
-                        TextField("localhost", text: $remoteHost)
-                    }
-
-                    LabeledField("Forwarding Type") {
-                        Picker("", selection: $forwardingType) {
-                            Text("Local (-L)").tag(ForwardingType.local)
-                            Text("Remote (-R)").tag(ForwardingType.remote)
-                            Text("Dynamic (-D)").tag(ForwardingType.dynamic)
-                        }
-                        .labelsHidden()
-                        .pickerStyle(.segmented)
-                    }
-
-                    LabeledField("Authentication") {
-                        Picker("", selection: $authMethod) {
-                            Text("SSH Key (auto)").tag(AuthMethod.key)
-                            Text("Password").tag(AuthMethod.password)
-                        }
-                        .labelsHidden()
-                        .pickerStyle(.segmented)
-                    }
-
-                    if authMethod == .key {
-                        LabeledField("Key Path") {
-                            HStack {
-                                TextField("Leave empty for default", text: $keyPath)
-                                Button("Browse...") { browseForKey() }
-                            }
-                        }
-                    } else {
-                        LabeledField("Password") {
-                            SecureField("", text: $password)
-                        }
-                    }
-
-                    Toggle("Auto-connect on launch", isOn: $autoConnect)
-                        .padding(.top, 4)
-                }
-                .padding(.top, 8)
-            }
-
-            Spacer()
 
             HStack {
                 Button("Cancel") { onDismiss?() }
@@ -114,9 +119,10 @@ struct TunnelFormView: View {
                     .keyboardShortcut(.defaultAction)
                     .disabled(!isValid)
             }
+            .padding(16)
         }
-        .padding(20)
-        .frame(width: 420, height: showAdvanced ? 520 : 280)
+        .frame(width: 420)
+        .frame(minHeight: 300, maxHeight: 560)
         .onAppear { loadEditing() }
     }
 
