@@ -2,7 +2,6 @@ import SwiftUI
 import ServiceManagement
 
 struct PreferencesView: View {
-    var onDismiss: (() -> Void)?
     @AppStorage("reconnectEnabled") private var reconnectEnabled = true
     @AppStorage("reconnectMaxRetries") private var reconnectMaxRetries = 0
     @State private var launchAtLogin = SMAppService.mainApp.status == .enabled
@@ -40,15 +39,9 @@ struct PreferencesView: View {
                 LabeledContent("Version", value: Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0")
             }
 
-            HStack {
-                Spacer()
-                Button("Done") { onDismiss?() }
-                    .keyboardShortcut(.defaultAction)
-            }
-            .padding(.top, 8)
         }
         .formStyle(.grouped)
-        .frame(width: 350)
-        .padding()
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .tint(.dsPrimary)
     }
 }

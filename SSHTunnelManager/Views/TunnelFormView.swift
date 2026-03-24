@@ -3,7 +3,7 @@ import SwiftUI
 struct TunnelFormView: View {
     var manager: TunnelManager
     var editing: TunnelConfig?
-    var onDismiss: (() -> Void)?
+    var onComplete: (() -> Void)?
 
     @State private var name: String = ""
     @State private var host: String = ""
@@ -24,103 +24,184 @@ struct TunnelFormView: View {
     var isEditing: Bool { editing != nil }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-                VStack(alignment: .leading, spacing: 16) {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 0) {
+                // Header
+                VStack(alignment: .leading, spacing: 4) {
                     Text(isEditing ? "Edit Tunnel" : "New Tunnel")
-                        .font(.headline)
+                        .font(.system(size: 22, weight: .bold))
+                        .foregroundStyle(Color.dsOnSurface)
+                    Text("Configure your secure port forwarding")
+                        .font(.system(size: 13))
+                        .foregroundStyle(Color.dsOnSurfaceVariant)
+                }
+                .padding(.horizontal, 24)
+                .padding(.top, 24)
+                .padding(.bottom, 16)
 
-                    LabeledField("Name") {
-                        TextField("e.g. Dev DB", text: $name)
+                // Form fields
+                VStack(alignment: .leading, spacing: 20) {
+                DSField("Connection Name") {
+                    TextField("e.g. Dev DB", text: $name)
+                        .textFieldStyle(.plain)
+                        .padding(10)
+                        .background(Color.dsSurfaceContainerLow)
+                        .clipShape(RoundedRectangle(cornerRadius: DS.cornerRadiusSmall))
+                }
+
+                DSField("SSH Host") {
+                    TextField("e.g. myserver.com", text: $host)
+                        .textFieldStyle(.plain)
+                        .padding(10)
+                        .background(Color.dsSurfaceContainerLow)
+                        .clipShape(RoundedRectangle(cornerRadius: DS.cornerRadiusSmall))
+                }
+
+                HStack(spacing: 12) {
+                    DSField("Local Port") {
+                        TextField("e.g. 5432", text: $localPort)
+                            .textFieldStyle(.plain)
+                            .padding(10)
+                            .background(Color.dsSurfaceContainerLow)
+                            .clipShape(RoundedRectangle(cornerRadius: DS.cornerRadiusSmall))
                     }
-
-                    LabeledField("SSH Host") {
-                        TextField("e.g. myserver.com", text: $host)
-                    }
-
-                    HStack(spacing: 12) {
-                        LabeledField("Local Port") {
-                            TextField("e.g. 5432", text: $localPort)
-                        }
-                        Text("←")
-                            .foregroundStyle(.secondary)
-                            .padding(.top, 18)
-                        LabeledField("Remote Port") {
-                            TextField("e.g. 5432", text: $remotePort)
-                        }
-                    }
-
-                    Divider()
-
-                    DisclosureGroup("Advanced", isExpanded: $showAdvanced) {
-                        VStack(alignment: .leading, spacing: 12) {
-                            HStack(spacing: 12) {
-                                LabeledField("Username") {
-                                    TextField("", text: $user)
-                                }
-                                LabeledField("SSH Port") {
-                                    TextField("22", text: $port)
-                                        .frame(width: 60)
-                                }
-                            }
-
-                            LabeledField("Remote Host") {
-                                TextField("localhost", text: $remoteHost)
-                            }
-
-                            LabeledField("Forwarding Type") {
-                                Picker("", selection: $forwardingType) {
-                                    Text("Local (-L)").tag(ForwardingType.local)
-                                    Text("Remote (-R)").tag(ForwardingType.remote)
-                                    Text("Dynamic (-D)").tag(ForwardingType.dynamic)
-                                }
-                                .labelsHidden()
-                                .pickerStyle(.segmented)
-                            }
-
-                            LabeledField("Authentication") {
-                                Picker("", selection: $authMethod) {
-                                    Text("SSH Key (auto)").tag(AuthMethod.key)
-                                    Text("Password").tag(AuthMethod.password)
-                                }
-                                .labelsHidden()
-                                .pickerStyle(.segmented)
-                            }
-
-                            if authMethod == .key {
-                                LabeledField("Key Path") {
-                                    HStack {
-                                        TextField("Leave empty for default", text: $keyPath)
-                                        Button("Browse...") { browseForKey() }
-                                    }
-                                }
-                            } else {
-                                LabeledField("Password") {
-                                    SecureField("", text: $password)
-                                }
-                            }
-
-                            Toggle("Auto-connect on launch", isOn: $autoConnect)
-                                .padding(.top, 4)
-                        }
-                        .padding(.top, 8)
+                    Image(systemName: "arrow.left")
+                        .foregroundStyle(Color.dsOutlineVariant)
+                        .padding(.top, 18)
+                    DSField("Remote Port") {
+                        TextField("e.g. 5432", text: $remotePort)
+                            .textFieldStyle(.plain)
+                            .padding(10)
+                            .background(Color.dsSurfaceContainerLow)
+                            .clipShape(RoundedRectangle(cornerRadius: DS.cornerRadiusSmall))
                     }
                 }
-                .padding(20)
+
+                Divider()
+
+                DisclosureGroup("Advanced", isExpanded: $showAdvanced) {
+                    VStack(alignment: .leading, spacing: 14) {
+                        HStack(spacing: 12) {
+                            DSField("Username") {
+                                TextField("", text: $user)
+                                    .textFieldStyle(.plain)
+                                    .padding(10)
+                                    .background(Color.dsSurfaceContainerLow)
+                                    .clipShape(RoundedRectangle(cornerRadius: DS.cornerRadiusSmall))
+                            }
+                            DSField("SSH Port") {
+                                TextField("22", text: $port)
+                                    .textFieldStyle(.plain)
+                                    .padding(10)
+                                    .frame(width: 70)
+                                    .background(Color.dsSurfaceContainerLow)
+                                    .clipShape(RoundedRectangle(cornerRadius: DS.cornerRadiusSmall))
+                            }
+                        }
+
+                        DSField("Remote Host") {
+                            TextField("localhost", text: $remoteHost)
+                                .textFieldStyle(.plain)
+                                .padding(10)
+                                .background(Color.dsSurfaceContainerLow)
+                                .clipShape(RoundedRectangle(cornerRadius: DS.cornerRadiusSmall))
+                        }
+
+                        DSField("Forwarding Type") {
+                            Picker("", selection: $forwardingType) {
+                                Text("Local (-L)").tag(ForwardingType.local)
+                                Text("Remote (-R)").tag(ForwardingType.remote)
+                                Text("Dynamic (-D)").tag(ForwardingType.dynamic)
+                            }
+                            .labelsHidden()
+                            .pickerStyle(.segmented)
+                        }
+
+                        DSField("Authentication") {
+                            Picker("", selection: $authMethod) {
+                                Text("SSH Key (auto)").tag(AuthMethod.key)
+                                Text("Password").tag(AuthMethod.password)
+                            }
+                            .labelsHidden()
+                            .pickerStyle(.segmented)
+                        }
+
+                        if authMethod == .key {
+                            DSField("Key Path") {
+                                HStack {
+                                    TextField("Leave empty for default", text: $keyPath)
+                                        .textFieldStyle(.plain)
+                                        .padding(10)
+                                        .background(Color.dsSurfaceContainerLow)
+                                        .clipShape(RoundedRectangle(cornerRadius: DS.cornerRadiusSmall))
+                                    Button("Browse...") { browseForKey() }
+                                }
+                            }
+                        } else {
+                            DSField("Password") {
+                                SecureField("", text: $password)
+                                    .textFieldStyle(.plain)
+                                    .padding(10)
+                                    .background(Color.dsSurfaceContainerLow)
+                                    .clipShape(RoundedRectangle(cornerRadius: DS.cornerRadiusSmall))
+                            }
+                        }
+
+                        Toggle("Auto-connect on launch", isOn: $autoConnect)
+                            .tint(.dsPrimary)
+                            .padding(.top, 4)
+                    }
+                    .padding(.top, 8)
+                }
+                .tint(.dsPrimary)
+            }
+            .padding(.horizontal, 24)
+            .padding(.bottom, 20)
 
             Divider()
 
-            HStack {
-                Button("Cancel") { onDismiss?() }
-                    .keyboardShortcut(.cancelAction)
-                Spacer()
-                Button(isEditing ? "Save" : "Add") { save() }
-                    .keyboardShortcut(.defaultAction)
-                    .disabled(!isValid)
+            // Action buttons
+            HStack(spacing: 12) {
+                Button(action: { onComplete?() }) {
+                    Text("Cancel")
+                        .font(.system(size: 13, weight: .semibold))
+                        .foregroundStyle(Color.dsOnSurfaceVariant)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 10)
+                        .background(Color.dsSurfaceContainerHigh)
+                        .clipShape(RoundedRectangle(cornerRadius: DS.cornerRadius))
+                }
+                .buttonStyle(.plain)
+                .keyboardShortcut(.cancelAction)
+
+                Button(action: { save() }) {
+                    Text(isEditing ? "Save" : "Add Tunnel")
+                        .font(.system(size: 13, weight: .bold))
+                        .foregroundStyle(.white)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 10)
+                        .background(
+                            LinearGradient(
+                                colors: [.dsPrimary, .dsPrimaryDim],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
+                        )
+                        .clipShape(RoundedRectangle(cornerRadius: DS.cornerRadius))
+                        .shadow(color: .dsPrimary.opacity(0.3), radius: 8, y: 4)
+                }
+                .buttonStyle(.plain)
+                .keyboardShortcut(.defaultAction)
+                .disabled(!isValid)
+                .opacity(isValid ? 1.0 : 0.5)
             }
-            .padding(16)
+            .padding(20)
+            }
+            .frame(maxWidth: 600)
+            .frame(maxWidth: .infinity)
         }
-        .frame(width: 420)
-        .fixedSize(horizontal: false, vertical: true)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.dsSurface)
         .onAppear { loadEditing() }
         .animation(.easeInOut(duration: 0.2), value: showAdvanced)
     }
@@ -177,7 +258,7 @@ struct TunnelFormView: View {
             manager.addTunnel(config, password: pwd)
             manager.connect(config.id)
         }
-        onDismiss?()
+        onComplete?()
     }
 
     private func browseForKey() {
@@ -192,7 +273,7 @@ struct TunnelFormView: View {
     }
 }
 
-struct LabeledField<Content: View>: View {
+struct DSField<Content: View>: View {
     let label: String
     let content: Content
 
@@ -202,12 +283,12 @@ struct LabeledField<Content: View>: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            Text(label)
-                .font(.caption)
-                .foregroundStyle(.secondary)
+        VStack(alignment: .leading, spacing: 6) {
+            Text(label.uppercased())
+                .font(.system(size: 10, weight: .bold))
+                .tracking(0.8)
+                .foregroundStyle(Color.dsPrimary)
             content
-                .textFieldStyle(.roundedBorder)
         }
     }
 }

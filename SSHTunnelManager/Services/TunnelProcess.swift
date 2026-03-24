@@ -4,9 +4,11 @@ class TunnelProcess {
     let config: TunnelConfig
     private var process: Process?
     private var askpassURL: URL?
+    private var stderrPipe: Pipe?
 
     var isRunning: Bool { process?.isRunning ?? false }
     var onTermination: ((Int32) -> Void)?
+    var onOutput: ((String) -> Void)?
 
     init(config: TunnelConfig) {
         self.config = config
@@ -33,7 +35,20 @@ class TunnelProcess {
         }
 
         proc.standardOutput = FileHandle.nullDevice
-        proc.standardError = FileHandle.nullDevice
+
+        let errPipe = Pipe()
+        self.stderrPipe = errPipe
+        proc.standardError = errPipe
+        errPipe.fileHandleForReading.readabilityHandler = { [weak self] handle in
+            let data = handle.availableData
+            guard !data.isEmpty, let text = String(data: data, encoding: .utf8) else { return }
+            let lines = text.components(separatedBy: .newlines).filter { !$0.isEmpty }
+            for line in lines {
+                DispatchQueue.main.async {
+                    self?.onOutput?(line)
+                }
+            }
+        }
 
         proc.terminationHandler = { [weak self] process in
             DispatchQueue.main.async {
@@ -58,6 +73,8 @@ class TunnelProcess {
     }
 
     private func cleanup() {
+        stderrPipe?.fileHandleForReading.readabilityHandler = nil
+        stderrPipe = nil
         AskpassHelper.cleanup(for: config.id)
         askpassURL = nil
     }

@@ -8,9 +8,12 @@ struct SSHTunnelManagerApp: App {
         MenuBarExtra {
             MenuBarView(manager: appDelegate.manager)
         } label: {
-            Image(systemName: "network")
-                .symbolRenderingMode(.palette)
-                .foregroundStyle(StatusBarIcon.color(for: appDelegate.manager.aggregateState))
+            HStack(spacing: 2) {
+                Image(systemName: "network")
+                Image(systemName: "circle.fill")
+                    .font(.system(size: 5))
+                    .foregroundStyle(StatusBarIcon.color(for: appDelegate.manager.aggregateState))
+            }
         }
         .menuBarExtraStyle(.window)
     }

@@ -7,6 +7,9 @@ class TunnelManager {
 
     var tunnels: [TunnelConfig] = []
     var states: [UUID: TunnelState] = [:]
+    var metrics: [UUID: TunnelMetrics] = [:]
+    let logStore = LogStore()
+    var pendingEditTunnelId: UUID?
 
     private var processes: [UUID: TunnelProcess] = [:]
     private var retryItems: [UUID: DispatchWorkItem] = [:]
@@ -91,6 +94,9 @@ class TunnelManager {
             if proc.isRunning && states[id] != .connected {
                 states[id] = .connected
                 retryCounts[id] = 0
+                if let name = tunnels.first(where: { $0.id == id })?.name {
+                    logStore.append(tunnelId: id, tunnelName: name, level: .info, message: "Connection established")
+                }
             }
         }
     }
@@ -155,9 +161,15 @@ class TunnelManager {
         retryCounts[id] = 0
         states[id] = .connecting
 
+        logStore.append(tunnelId: id, tunnelName: config.name, level: .info, message: "Connecting to \(config.host):\(config.port)...")
+        metrics[id] = TunnelMetrics(connectedAt: Date())
+
         let proc = TunnelProcess(config: config)
         proc.onTermination = { [weak self] exitCode in
             self?.handleTermination(tunnelId: id, exitCode: exitCode)
+        }
+        proc.onOutput = { [weak self] line in
+            self?.handleProcessOutput(tunnelId: id, tunnelName: config.name, line: line)
         }
 
         do {
@@ -165,6 +177,9 @@ class TunnelManager {
             processes[id] = proc
         } catch {
             states[id] = .failed(reason: error.localizedDescription)
+            metrics[id]?.disconnectedAt = Date()
+            metrics[id]?.lastError = error.localizedDescription
+            logStore.append(tunnelId: id, tunnelName: config.name, level: .error, message: error.localizedDescription)
             notifications.sendDisconnected(tunnelName: config.name, reconnecting: false)
         }
     }
@@ -174,6 +189,10 @@ class TunnelManager {
         processes[id]?.stop()
         processes.removeValue(forKey: id)
         states[id] = .disconnected
+        metrics[id]?.disconnectedAt = Date()
+        if let name = tunnels.first(where: { $0.id == id })?.name {
+            logStore.append(tunnelId: id, tunnelName: name, level: .info, message: "Disconnected")
+        }
     }
 
     func toggleConnection(_ id: UUID) {
@@ -186,10 +205,28 @@ class TunnelManager {
 
     // MARK: - Reconnect
 
+    private func handleProcessOutput(tunnelId: UUID, tunnelName: String, line: String) {
+        let lower = line.lowercased()
+        let level: LogLevel
+        if lower.contains("error") || lower.contains("fatal") || lower.contains("refused") {
+            level = .error
+        } else if lower.contains("warning") || lower.contains("warn") {
+            level = .warning
+        } else if lower.contains("debug") {
+            level = .debug
+        } else {
+            level = .info
+        }
+        logStore.append(tunnelId: tunnelId, tunnelName: tunnelName, level: level, message: line)
+    }
+
     private func handleTermination(tunnelId: UUID, exitCode: Int32) {
         processes.removeValue(forKey: tunnelId)
         guard states[tunnelId] != .disconnected else { return }
         guard let config = tunnels.first(where: { $0.id == tunnelId }) else { return }
+
+        metrics[tunnelId]?.disconnectedAt = Date()
+        logStore.append(tunnelId: tunnelId, tunnelName: config.name, level: exitCode == 0 ? .info : .error, message: "Process exited with code \(exitCode)")
 
         let reconnectEnabled = UserDefaults.standard.bool(forKey: "reconnectEnabled")
         guard reconnectEnabled else {
@@ -202,6 +239,7 @@ class TunnelManager {
         let maxRetries = UserDefaults.standard.integer(forKey: "reconnectMaxRetries")
 
         if ReconnectScheduler(maxRetries: maxRetries).shouldRetry(attempt: attempt) {
+            metrics[tunnelId]?.reconnectCount = attempt + 1
             states[tunnelId] = .reconnecting(attempt: attempt + 1)
             notifications.sendDisconnected(tunnelName: config.name, reconnecting: true)
             let item = reconnectScheduler.scheduleRetry(attempt: attempt) { [weak self] in
@@ -220,6 +258,17 @@ class TunnelManager {
     private func cancelRetry(for id: UUID) {
         retryItems[id]?.cancel()
         retryItems.removeValue(forKey: id)
+    }
+
+    // MARK: - Dashboard
+
+    func openDashboard(editingTunnelId: UUID? = nil) {
+        pendingEditTunnelId = editingTunnelId
+        WindowManager.shared.openWindow(
+            id: "dashboard",
+            title: "SSH Tunnel Manager",
+            content: MainWindowView(manager: self)
+        )
     }
 
     // MARK: - Persistence

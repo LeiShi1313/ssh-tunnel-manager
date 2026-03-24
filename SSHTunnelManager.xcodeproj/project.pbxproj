@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA000001DESIGNTOKENS0001 /* DesignTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000002DESIGNTOKENS0002 /* DesignTokens.swift */; };
+		BB000001TUNNELLOG000001 /* TunnelLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000002TUNNELLOG000002 /* TunnelLog.swift */; };
+		BB000003TUNNELMETRICS01 /* TunnelMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000004TUNNELMETRICS02 /* TunnelMetrics.swift */; };
+		BB000005LOGSTORE0000001 /* LogStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000006LOGSTORE0000002 /* LogStore.swift */; };
+		BB000007DASHBOARDVW0001 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000008DASHBOARDVW0002 /* DashboardView.swift */; };
+		BB000009LOGSVIEW00000001 /* LogsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB00000ALOGSVIEW00000002 /* LogsView.swift */; };
+		BB00000BMAINWINDOWVW001 /* MainWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB00000CMAINWINDOWVW002 /* MainWindowView.swift */; };
 		0000F1C2C22BD4DD7C242062 /* SSHCommandBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2CF78C217C6E72E4C70FDC /* SSHCommandBuilderTests.swift */; };
 		03F7631496214833C39B6573 /* MenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AD7EB2C57EEB5FDAABF8FA /* MenuBarView.swift */; };
 		04CCD656AF3FFBBB48A49FD4 /* TunnelRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097B7E8B9D18A9FC0E4CDF74 /* TunnelRowView.swift */; };
@@ -46,6 +53,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AA000002DESIGNTOKENS0002 /* DesignTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignTokens.swift; sourceTree = "<group>"; };
+		BB000002TUNNELLOG000002 /* TunnelLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelLog.swift; sourceTree = "<group>"; };
+		BB000004TUNNELMETRICS02 /* TunnelMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelMetrics.swift; sourceTree = "<group>"; };
+		BB000006LOGSTORE0000002 /* LogStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogStore.swift; sourceTree = "<group>"; };
+		BB000008DASHBOARDVW0002 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		BB00000ALOGSVIEW00000002 /* LogsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsView.swift; sourceTree = "<group>"; };
+		BB00000CMAINWINDOWVW002 /* MainWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowView.swift; sourceTree = "<group>"; };
 		023F4841D6F4E17488711643 /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
 		036B4773BB3F7E66A015686E /* AskpassHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskpassHelper.swift; sourceTree = "<group>"; };
 		097B7E8B9D18A9FC0E4CDF74 /* TunnelRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelRowView.swift; sourceTree = "<group>"; };
@@ -93,6 +107,7 @@
 			children = (
 				036B4773BB3F7E66A015686E /* AskpassHelper.swift */,
 				2C5B10661CC37FC88DBEDEB7 /* KeychainService.swift */,
+				BB000006LOGSTORE0000002 /* LogStore.swift */,
 				7459077F5FB4D8ED0B355716 /* NotificationService.swift */,
 				EF125BD0DA36ECE11FEB59D1 /* PortChecker.swift */,
 				5D56464A78D1542DCECBA1E0 /* ReconnectScheduler.swift */,
@@ -119,6 +134,10 @@
 		93B34A6D8AC31E0FE48F3201 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BB000008DASHBOARDVW0002 /* DashboardView.swift */,
+				AA000002DESIGNTOKENS0002 /* DesignTokens.swift */,
+				BB00000ALOGSVIEW00000002 /* LogsView.swift */,
+				BB00000CMAINWINDOWVW002 /* MainWindowView.swift */,
 				32AD7EB2C57EEB5FDAABF8FA /* MenuBarView.swift */,
 				023F4841D6F4E17488711643 /* PreferencesView.swift */,
 				F23A0DF73B1FF5C0C604EFC5 /* StatusBarIcon.swift */,
@@ -166,6 +185,8 @@
 			isa = PBXGroup;
 			children = (
 				5909F6104FB2F4B5A601375B /* TunnelConfig.swift */,
+				BB000002TUNNELLOG000002 /* TunnelLog.swift */,
+				BB000004TUNNELMETRICS02 /* TunnelMetrics.swift */,
 				C3F2A76586A414A18117D984 /* TunnelState.swift */,
 			);
 			path = Models;
@@ -271,6 +292,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA000001DESIGNTOKENS0001 /* DesignTokens.swift in Sources */,
+				BB000007DASHBOARDVW0001 /* DashboardView.swift in Sources */,
+				BB000005LOGSTORE0000001 /* LogStore.swift in Sources */,
+				BB000009LOGSVIEW00000001 /* LogsView.swift in Sources */,
+				BB00000BMAINWINDOWVW001 /* MainWindowView.swift in Sources */,
+				BB000001TUNNELLOG000001 /* TunnelLog.swift in Sources */,
+				BB000003TUNNELMETRICS01 /* TunnelMetrics.swift in Sources */,
 				39361CD241B3BB35FC5AC0EC /* AskpassHelper.swift in Sources */,
 				63B1C8A878C0CEE3A517A3D7 /* KeychainService.swift in Sources */,
 				03F7631496214833C39B6573 /* MenuBarView.swift in Sources */,
