@@ -3,7 +3,7 @@ import ServiceManagement
 
 struct PreferencesView: View {
     @AppStorage("reconnectEnabled") private var reconnectEnabled = true
-    @AppStorage("reconnectMaxRetries") private var reconnectMaxRetries = 0
+    @AppStorage("reconnectMaxRetries") private var reconnectMaxRetries = 6
     @State private var launchAtLogin = SMAppService.mainApp.status == .enabled
 
     var body: some View {
@@ -32,6 +32,10 @@ struct PreferencesView: View {
                         value: $reconnectMaxRetries,
                         in: 0...100
                     )
+
+                    Text("Retries pause while the Mac is offline and resume when network connectivity returns.")
+                        .font(.system(size: 11))
+                        .foregroundStyle(.secondary)
                 }
             }
 

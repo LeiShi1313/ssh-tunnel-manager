@@ -26,6 +26,14 @@ class NotificationService {
         send(content, id: "reconnect-\(tunnelName)")
     }
 
+    func sendWaitingForNetwork(tunnelName: String) {
+        let content = UNMutableNotificationContent()
+        content.title = "Tunnel Waiting for Network"
+        content.body = "Tunnel '\(tunnelName)' is paused until the network connection returns."
+        content.sound = .default
+        send(content, id: "network-\(tunnelName)")
+    }
+
     func sendFailed(tunnelName: String, attempts: Int) {
         let content = UNMutableNotificationContent()
         content.title = "Tunnel Failed"

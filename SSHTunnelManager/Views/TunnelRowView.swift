@@ -35,6 +35,10 @@ struct TunnelRowView: View {
                         Text("retry \(attempt)")
                             .font(.system(size: 10, weight: .medium))
                             .foregroundStyle(Color.dsTertiary)
+                    } else if case .waitingForNetwork(let attempt) = state {
+                        Text("network wait \(attempt)")
+                            .font(.system(size: 10, weight: .medium))
+                            .foregroundStyle(Color.orange)
                     }
                 }
             }
@@ -79,7 +83,7 @@ struct TunnelRowView: View {
 
     private var isActive: Bool {
         switch state {
-        case .connected, .connecting, .reconnecting:
+        case .connected, .connecting, .reconnecting, .waitingForNetwork:
             return true
         default:
             return false
@@ -90,6 +94,7 @@ struct TunnelRowView: View {
         switch state {
         case .connected: return "bolt.fill"
         case .connecting, .reconnecting: return "arrow.triangle.2.circlepath"
+        case .waitingForNetwork: return "wifi.slash"
         case .disconnected: return "cloud.fill"
         case .failed: return "exclamationmark.triangle.fill"
         }
@@ -99,6 +104,7 @@ struct TunnelRowView: View {
         switch state {
         case .connected: return .dsPrimary.opacity(0.12)
         case .connecting, .reconnecting: return .dsTertiary.opacity(0.12)
+        case .waitingForNetwork: return .orange.opacity(0.12)
         case .disconnected: return .dsOnSurfaceVariant.opacity(0.08)
         case .failed: return .dsError.opacity(0.12)
         }
@@ -108,6 +114,7 @@ struct TunnelRowView: View {
         switch state {
         case .connected: return .dsPrimary
         case .connecting, .reconnecting: return .dsTertiary
+        case .waitingForNetwork: return .orange
         case .disconnected: return .dsOnSurfaceVariant
         case .failed: return .dsError
         }
@@ -118,6 +125,7 @@ struct TunnelRowView: View {
         case .connected: return "Connected"
         case .connecting: return "Connecting..."
         case .reconnecting: return "Reconnecting"
+        case .waitingForNetwork: return "Waiting for network"
         case .disconnected: return "Stopped"
         case .failed: return "Failed"
         }
@@ -129,6 +137,7 @@ struct TunnelRowView: View {
         case .connecting: return .dsTertiary
         case .connected: return .dsPrimary
         case .reconnecting: return .orange
+        case .waitingForNetwork: return .orange
         case .failed: return .dsError
         }
     }

@@ -14,11 +14,12 @@ class TunnelManager {
     private var processes: [UUID: TunnelProcess] = [:]
     private var retryItems: [UUID: DispatchWorkItem] = [:]
     private var retryCounts: [UUID: Int] = [:]
+    private var waitingForNetworkIds: Set<UUID> = []
 
     private let store: TunnelStore
     private let keychain: KeychainService
-    private let reconnectScheduler = ReconnectScheduler()
     private let notifications: NotificationService
+    private let networkMonitor: NetworkMonitoring
 
     private let activeTunnelIdsKey = "activeTunnelIds"
 
@@ -27,16 +28,22 @@ class TunnelManager {
     init(
         store: TunnelStore = TunnelStore(),
         keychain: KeychainService = KeychainService(),
-        notifications: NotificationService = .shared
+        notifications: NotificationService = .shared,
+        networkMonitor: NetworkMonitoring = NetworkMonitor()
     ) {
         self.store = store
         self.keychain = keychain
         self.notifications = notifications
+        self.networkMonitor = networkMonitor
+        self.networkMonitor.onStatusChange = { [weak self] isOnline in
+            self?.handleNetworkStatusChange(isOnline: isOnline)
+        }
     }
 
     // MARK: - Lifecycle
 
     func loadAndAutoConnect() {
+        networkMonitor.start()
         do {
             tunnels = try store.load()
         } catch {
@@ -92,10 +99,20 @@ class TunnelManager {
     private func syncStates() {
         for (id, proc) in processes {
             if proc.isRunning && states[id] != .connected {
+                let shouldNotify = {
+                    if case .reconnecting = states[id] { return true }
+                    if case .waitingForNetwork = states[id] { return true }
+                    return false
+                }()
+
                 states[id] = .connected
                 retryCounts[id] = 0
+                waitingForNetworkIds.remove(id)
                 if let name = tunnels.first(where: { $0.id == id })?.name {
                     logStore.append(tunnelId: id, tunnelName: name, level: .info, message: "Connection established")
+                    if shouldNotify {
+                        notifications.sendReconnected(tunnelName: name)
+                    }
                 }
             }
         }
@@ -156,9 +173,29 @@ class TunnelManager {
     // MARK: - Connect / Disconnect
 
     func connect(_ id: UUID) {
+        connect(id, isRetry: false)
+    }
+
+    private func connect(_ id: UUID, isRetry: Bool) {
         guard let config = tunnels.first(where: { $0.id == id }), config.enabled else { return }
         cancelRetry(for: id)
-        retryCounts[id] = 0
+        waitingForNetworkIds.remove(id)
+        if !isRetry {
+            retryCounts[id] = 0
+        }
+
+        guard networkMonitor.isOnline else {
+            if isRetry {
+                enterWaitingForNetworkState(tunnelId: id, tunnelName: config.name, attempt: (retryCounts[id] ?? 0) + 1)
+            } else {
+                states[id] = .waitingForNetwork(attempt: 1)
+                logStore.append(tunnelId: id, tunnelName: config.name, level: .warning, message: "No network connection. Waiting to connect until the network returns.")
+                waitingForNetworkIds.insert(id)
+                notifications.sendWaitingForNetwork(tunnelName: config.name)
+            }
+            return
+        }
+
         states[id] = .connecting
 
         logStore.append(tunnelId: id, tunnelName: config.name, level: .info, message: "Connecting to \(config.host):\(config.port)...")
@@ -186,6 +223,7 @@ class TunnelManager {
 
     func disconnect(_ id: UUID) {
         cancelRetry(for: id)
+        waitingForNetworkIds.remove(id)
         processes[id]?.stop()
         processes.removeValue(forKey: id)
         states[id] = .disconnected
@@ -236,23 +274,7 @@ class TunnelManager {
         }
 
         let attempt = retryCounts[tunnelId] ?? 0
-        let maxRetries = UserDefaults.standard.integer(forKey: "reconnectMaxRetries")
-
-        if ReconnectScheduler(maxRetries: maxRetries).shouldRetry(attempt: attempt) {
-            metrics[tunnelId]?.reconnectCount = attempt + 1
-            states[tunnelId] = .reconnecting(attempt: attempt + 1)
-            notifications.sendDisconnected(tunnelName: config.name, reconnecting: true)
-            let item = reconnectScheduler.scheduleRetry(attempt: attempt) { [weak self] in
-                self?.retryCounts[tunnelId] = attempt + 1
-                self?.connect(tunnelId)
-            }
-            if let item = item {
-                retryItems[tunnelId] = item
-            }
-        } else {
-            states[tunnelId] = .failed(reason: "Max retries reached")
-            notifications.sendFailed(tunnelName: config.name, attempts: attempt)
-        }
+        scheduleReconnect(for: config, currentAttempt: attempt)
     }
 
     private func cancelRetry(for id: UUID) {
@@ -302,12 +324,71 @@ class TunnelManager {
         }
         if states.values.contains(where: {
             if case .reconnecting = $0 { return true }
+            if case .waitingForNetwork = $0 { return true }
             if $0 == .connecting { return true }
             return false
         }) {
             return .partial
         }
         return .allConnected
+    }
+
+    private func scheduleReconnect(for config: TunnelConfig, currentAttempt: Int) {
+        let scheduler = ReconnectScheduler(maxRetries: UserDefaults.standard.integer(forKey: "reconnectMaxRetries"))
+        guard scheduler.shouldRetry(attempt: currentAttempt) else {
+            states[config.id] = .failed(reason: "Max retries reached")
+            notifications.sendFailed(tunnelName: config.name, attempts: currentAttempt)
+            return
+        }
+
+        metrics[config.id]?.reconnectCount = currentAttempt + 1
+
+        guard networkMonitor.isOnline else {
+            enterWaitingForNetworkState(tunnelId: config.id, tunnelName: config.name, attempt: currentAttempt + 1)
+            return
+        }
+
+        states[config.id] = .reconnecting(attempt: currentAttempt + 1)
+        notifications.sendDisconnected(tunnelName: config.name, reconnecting: true)
+        let item = scheduler.scheduleRetry(attempt: currentAttempt) { [weak self] in
+            self?.retryCounts[config.id] = currentAttempt + 1
+            self?.connect(config.id, isRetry: true)
+        }
+        if let item {
+            retryItems[config.id] = item
+        }
+    }
+
+    private func enterWaitingForNetworkState(tunnelId: UUID, tunnelName: String, attempt: Int) {
+        cancelRetry(for: tunnelId)
+        waitingForNetworkIds.insert(tunnelId)
+        states[tunnelId] = .waitingForNetwork(attempt: attempt)
+        logStore.append(tunnelId: tunnelId, tunnelName: tunnelName, level: .warning, message: "Network unavailable. Reconnect is paused until connectivity returns.")
+        notifications.sendWaitingForNetwork(tunnelName: tunnelName)
+    }
+
+    private func handleNetworkStatusChange(isOnline: Bool) {
+        guard isOnline else { return }
+
+        let waitingIds = waitingForNetworkIds
+        waitingForNetworkIds.removeAll()
+
+        for tunnelId in waitingIds {
+            guard let config = tunnels.first(where: { $0.id == tunnelId }) else { continue }
+
+            if processes[tunnelId]?.isRunning == true {
+                continue
+            }
+
+            if retryCounts[tunnelId] == nil {
+                logStore.append(tunnelId: tunnelId, tunnelName: config.name, level: .info, message: "Network restored. Trying to connect.")
+                connect(tunnelId, isRetry: false)
+            } else {
+                let currentAttempt = retryCounts[tunnelId] ?? 0
+                logStore.append(tunnelId: tunnelId, tunnelName: config.name, level: .info, message: "Network restored. Resuming reconnect attempts.")
+                scheduleReconnect(for: config, currentAttempt: currentAttempt)
+            }
+        }
     }
 }
 

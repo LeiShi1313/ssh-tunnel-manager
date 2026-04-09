@@ -188,7 +188,7 @@ struct DashboardTunnelCard: View {
 
     private var isActive: Bool {
         switch state {
-        case .connected, .connecting, .reconnecting: return true
+        case .connected, .connecting, .reconnecting, .waitingForNetwork: return true
         default: return false
         }
     }
@@ -267,6 +267,7 @@ struct DashboardTunnelCard: View {
         switch state {
         case .connected: return .dsPrimary
         case .connecting, .reconnecting: return .dsTertiary
+        case .waitingForNetwork: return .orange
         case .disconnected: return .dsOnSurfaceVariant
         case .failed: return .dsError
         }
@@ -277,6 +278,7 @@ struct DashboardTunnelCard: View {
         case .connected: return "Connected"
         case .connecting: return "Connecting..."
         case .reconnecting: return "Reconnecting"
+        case .waitingForNetwork: return "Waiting for network"
         case .disconnected: return "Stopped"
         case .failed: return "Failed"
         }

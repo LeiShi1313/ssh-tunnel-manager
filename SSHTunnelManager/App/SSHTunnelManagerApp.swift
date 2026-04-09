@@ -23,7 +23,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         // Register UserDefaults defaults (AppStorage defaults only apply in SwiftUI views)
         UserDefaults.standard.register(defaults: [
             "reconnectEnabled": true,
-            "reconnectMaxRetries": 0,
+            "reconnectMaxRetries": 6,
         ])
 
         // Skip notification setup when running under XCTest to avoid UNUserNotificationCenter crash
